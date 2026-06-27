@@ -1,8 +1,197 @@
+# ============================================
+# LUMO .gitignore
+# Stack: NestJS + React/Vite + Prisma + MySQL
+# ============================================
+
+# ====================
+# DEPENDENCIES
+# ====================
 node_modules/
-build/
+jspm_packages/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# ====================
+# BUILD OUTPUT
+# ====================
 dist/
-coverage/
-.DS_Store
-*.log
-.env*
+build/
+out/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+
+# ====================
+# ENVIRONMENT & SECRETS
+# ====================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# API env files
+api/.env
+api/.env.local
+api/.env.prod
+api/.env.production
+
+# Web env files
+web/.env.local
+web/.env.development.local
+web/.env.test.local
+web/.env.production.local
+
+# Keep examples (placeholders only)
 !.env.example
+!api/.env.example
+!web/.env.example
+
+# ====================
+# SECURITY - NEVER COMMIT
+# ====================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.jceks
+*.secret
+*.secrets
+secrets/
+credentials/
+**/credentials.json
+**/service-account*.json
+**/*-credentials.json
+**/*-secret.json
+**/*-token.json
+
+# ====================
+# PRISMA
+# ====================
+prisma/*.db
+prisma/*.db-journal
+prisma/migrations/
+
+# ====================
+# LOGS
+# ====================
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-lock.yaml
+
+# ====================
+# TESTING
+# ====================
+coverage/
+.nyc_output/
+*.lcov
+htmlcov/
+
+# ====================
+# IDEs & EDITORS
+# ====================
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# ====================
+# OS FILES
+# ====================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.tmp
+*.temp
+.temp/
+.tmp/
+
+# ====================
+# TYPESCRIPT
+# ====================
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# ====================
+# CACHE
+# ====================
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# ====================
+# VITE
+# ====================
+*.local
+web/dist/
+web/build/
+
+# ====================
+# PWA
+# ====================
+web/dev-dist/
+web/sw.js
+web/workbox-*.js
+web/sw.js.map
+web/workbox-*.js.map
+
+# ====================
+# DOCKER
+# ====================
+docker-compose.override.yml
+
+# ====================
+# MISC
+# ====================
+*.tgz
+.yarn-integrity
+.node_repl_history
+.tern-port
+.serverless
+.fusebox
+.dynamodb
+.jest-*
+
+# ====================
+# COMPRESSED FILES
+# ====================
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip

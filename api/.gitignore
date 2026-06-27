@@ -1,0 +1,9 @@
+# API-specific rules (root .gitignore covers common patterns)
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+prisma/migrations/
+
+# NestJS specific
+nest-cli.json

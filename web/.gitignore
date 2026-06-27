@@ -1,0 +1,12 @@
+# Web-specific rules (root .gitignore covers common patterns)
+
+# Vite
+web/dist/
+web/build/
+
+# PWA
+dev-dist/
+sw.js
+workbox-*.js
+sw.js.map
+workbox-*.js.map
