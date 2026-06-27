@@ -1,0 +1,6 @@
+{
+  "name": "Lumo Learning World",
+  "description": "An interactive, adaptive child learning dashboard and adventure play suite with gamified modules, stories, pronunciation practice, and a parent tracking panel.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
