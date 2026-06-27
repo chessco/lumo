@@ -61,9 +61,10 @@ const quickActions = [
 export default function LumoHomePage() {
   const { t } = useTranslation();
 
-  // Mock user data - in real app this would come from context/API
-  const user = JSON.parse(localStorage.getItem('lumo_user') || '{}');
-  const userName = user.firstName || 'Explorer';
+  // Get explorer data from localStorage (set during onboarding)
+  const explorerData = JSON.parse(localStorage.getItem('lumo_child') || '{}');
+  const userName = explorerData.name || localStorage.getItem('lumo_user')?.firstName || 'Explorer';
+  const userAvatar = explorerData.avatar || '🧒';
 
   return (
     <div className="p-4 md:p-6 max-w-4xl mx-auto">
