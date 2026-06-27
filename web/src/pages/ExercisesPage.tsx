@@ -148,15 +148,15 @@ export default function ExercisesPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 bg-gradient-to-b from-blue-50 to-white min-h-screen p-6 rounded-3xl">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-3xl shadow-sm border-2 border-blue-100">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Ejercicios</h1>
-          <p className="text-gray-600 mt-1">Ejercicios de pronunciación disponibles</p>
+          <h1 className="text-4xl font-black text-gray-800 tracking-tight">Ejercicios de Habla 🗣️</h1>
+          <p className="text-gray-500 mt-2 font-medium text-lg">¡Practica con Lumi y gana estrellas!</p>
         </div>
-        <Button className="lumo-button" onClick={() => setShowCreateForm(true)}>
-          <Plus className="mr-2 h-4 w-4" />
+        <Button className="bg-lumo-primary text-white hover:bg-lumo-primary/90 btn-3d rounded-2xl h-14 px-6 text-lg font-bold" onClick={() => setShowCreateForm(true)}>
+          <Plus className="mr-2 h-6 w-6" />
           Crear Ejercicio
         </Button>
       </div>
@@ -164,18 +164,18 @@ export default function ExercisesPage() {
       {/* Filters */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <Input
             placeholder="Buscar ejercicios..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 lumo-input"
+            className="pl-12 h-14 rounded-2xl border-2 border-gray-200 text-lg shadow-sm"
           />
         </div>
         <select
           value={selectedDifficulty}
           onChange={(e) => setSelectedDifficulty(e.target.value)}
-          className="lumo-input md:w-48"
+          className="h-14 rounded-2xl border-2 border-gray-200 text-lg shadow-sm px-4 md:w-48 bg-white"
         >
           <option value="all">Todas las dificultades</option>
           <option value="beginner">Principiante</option>
@@ -185,7 +185,7 @@ export default function ExercisesPage() {
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="lumo-input md:w-48"
+          className="h-14 rounded-2xl border-2 border-gray-200 text-lg shadow-sm px-4 md:w-48 bg-white"
         >
           <option value="all">Todas las categorías</option>
           <option value="vowels">Vocales</option>
@@ -278,15 +278,15 @@ export default function ExercisesPage() {
       {/* Exercises grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredExercises.map((exercise) => (
-          <Card key={exercise.id} className="lumo-card-hover">
+          <Card key={exercise.id} className="rounded-3xl border-2 border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white overflow-hidden group">
             <CardContent className="p-6">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-lumo-primary/10 flex items-center justify-center">
-                    <Volume2 className="h-6 w-6 text-lumo-primary" />
+                  <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Volume2 className="h-8 w-8 text-blue-500" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">{exercise.name}</h3>
+                    <h3 className="font-bold text-xl text-gray-800">{exercise.name}</h3>
                     <span className={`text-xs px-2 py-1 rounded-full ${getDifficultyColor(exercise.difficulty)}`}>
                       {getDifficultyLabel(exercise.difficulty)}
                     </span>
@@ -317,12 +317,12 @@ export default function ExercisesPage() {
 
               <div className="flex gap-2">
                 <Link to="/children" className="flex-1">
-                  <Button className="w-full lumo-button" size="sm">
-                    <Mic className="mr-2 h-4 w-4" />
-                    Practicar
+                  <Button className="w-full bg-lumo-primary text-white hover:bg-lumo-primary/90 btn-3d rounded-2xl h-12 font-bold" size="sm">
+                    <Mic className="mr-2 h-5 w-5" />
+                    ¡A practicar!
                   </Button>
                 </Link>
-                <Button variant="outline" size="sm" className="lumo-button-secondary">
+                <Button variant="outline" size="sm" className="rounded-2xl h-12 w-12 border-2 border-gray-200 text-gray-500 hover:text-gray-700 hover:bg-gray-50">
                   <BarChart3 className="h-4 w-4" />
                 </Button>
               </div>

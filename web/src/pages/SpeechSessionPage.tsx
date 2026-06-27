@@ -128,17 +128,17 @@ export default function SpeechSessionPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 bg-gradient-to-b from-purple-50 to-white min-h-screen p-6 rounded-3xl">
       {/* Header */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 bg-white p-6 rounded-3xl shadow-sm border-2 border-purple-100">
         <Link to="/children">
-          <Button variant="ghost" size="icon">
-            <ArrowLeft className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="hover:bg-purple-100 rounded-full h-12 w-12">
+            <ArrowLeft className="h-6 w-6 text-purple-700" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Sesión de Práctica</h1>
-          <p className="text-gray-600">Mejora tu pronunciación con Lumi</p>
+          <h1 className="text-4xl font-black text-gray-800 tracking-tight">Sesión de Práctica 🎤</h1>
+          <p className="text-gray-500 mt-2 font-medium text-lg">Mejora tu pronunciación con Lumi</p>
         </div>
       </div>
 
@@ -148,17 +148,17 @@ export default function SpeechSessionPage() {
           {exercises.map((exercise) => (
             <Card 
               key={exercise.id} 
-              className="lumo-card-hover cursor-pointer"
+              className="rounded-3xl border-2 border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white cursor-pointer group"
               onClick={() => setSelectedExercise(exercise.id)}
             >
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-lumo-primary/10 flex items-center justify-center">
-                    <Volume2 className="h-6 w-6 text-lumo-primary" />
+                  <div className="w-16 h-16 rounded-2xl bg-purple-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Volume2 className="h-8 w-8 text-purple-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">{exercise.name}</h3>
-                    <span className={`text-xs px-2 py-1 rounded-full ${
+                    <h3 className="font-bold text-xl text-gray-800">{exercise.name}</h3>
+                    <span className={`text-xs px-3 py-1.5 rounded-full font-bold ${
                       exercise.difficulty === 'beginner' ? 'bg-green-100 text-green-700' :
                       exercise.difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-700' :
                       'bg-red-100 text-red-700'
@@ -168,34 +168,34 @@ export default function SpeechSessionPage() {
                     </span>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600">{exercise.description}</p>
+                <p className="text-sm text-gray-500 font-medium">{exercise.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
       ) : (
         /* Recording interface */
-        <div className="max-w-2xl mx-auto">
-          <Card className="lumo-card">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl">
-                Practica el fonema: <span className="text-lumo-primary text-4xl">{phonemes[currentPhoneme]}</span>
+        <div className="max-w-3xl mx-auto">
+          <Card className="rounded-3xl border-4 border-lumo-primary shadow-xl overflow-hidden">
+            <CardHeader className="text-center bg-purple-50 pb-8 pt-8">
+              <CardTitle className="text-3xl font-black text-gray-800">
+                Practica el fonema: <span className="text-lumo-primary text-6xl block mt-4 drop-shadow-md">{phonemes[currentPhoneme]}</span>
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-lg font-medium mt-4">
                 Di el sonido "{phonemes[currentPhoneme]}" en voz alta
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-10 pt-8 pb-10">
               {/* Phoneme progress */}
-              <div className="flex justify-center gap-2">
+              <div className="flex justify-center gap-3">
                 {phonemes.map((phoneme, index) => (
                   <div
                     key={phoneme}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center font-black text-2xl transition-all duration-500 ${
                       index === currentPhoneme
-                        ? 'bg-lumo-primary text-white'
+                        ? 'bg-lumo-primary text-white scale-125 shadow-lg shadow-purple-200'
                         : index < currentPhoneme
-                        ? 'bg-green-100 text-green-600'
+                        ? 'bg-green-400 text-white shadow-inner'
                         : 'bg-gray-100 text-gray-400'
                     }`}
                   >
@@ -205,14 +205,15 @@ export default function SpeechSessionPage() {
               </div>
 
               {/* Recording controls */}
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center gap-6">
                 {!isRecording && !audioBlob && (
                   <Button
                     size="xl"
-                    className="lumo-button w-20 h-20 rounded-full"
+                    className="bg-lumo-primary hover:bg-lumo-primary/90 btn-3d w-32 h-32 rounded-[2rem] flex flex-col items-center justify-center gap-2"
                     onClick={startRecording}
                   >
-                    <Mic className="h-8 w-8" />
+                    <Mic className="h-12 w-12 text-white" />
+                    <span className="text-white font-bold text-lg">Grabar</span>
                   </Button>
                 )}
 
@@ -220,10 +221,11 @@ export default function SpeechSessionPage() {
                   <Button
                     size="xl"
                     variant="destructive"
-                    className="w-20 h-20 rounded-full animate-pulse"
+                    className="w-32 h-32 rounded-[2rem] animate-pulse flex flex-col items-center justify-center gap-2 shadow-xl shadow-red-200"
                     onClick={stopRecording}
                   >
-                    <Square className="h-8 w-8" />
+                    <Square className="h-12 w-12" />
+                    <span className="font-bold text-lg">Detener</span>
                   </Button>
                 )}
 
@@ -232,19 +234,21 @@ export default function SpeechSessionPage() {
                     {!isPlaying ? (
                       <Button
                         size="xl"
-                        className="lumo-button w-20 h-20 rounded-full"
+                        className="bg-green-500 hover:bg-green-600 btn-3d w-32 h-32 rounded-[2rem] flex flex-col items-center justify-center gap-2"
                         onClick={playAudio}
                       >
-                        <Play className="h-8 w-8" />
+                        <Play className="h-12 w-12 text-white ml-2" />
+                        <span className="text-white font-bold text-lg">Escuchar</span>
                       </Button>
                     ) : (
                       <Button
                         size="xl"
                         variant="outline"
-                        className="w-20 h-20 rounded-full"
+                        className="w-32 h-32 rounded-[2rem] border-4 border-gray-200 text-gray-600 flex flex-col items-center justify-center gap-2"
                         onClick={pauseAudio}
                       >
-                        <Pause className="h-8 w-8" />
+                        <Pause className="h-12 w-12" />
+                        <span className="font-bold text-lg">Pausar</span>
                       </Button>
                     )}
                   </>
@@ -272,29 +276,29 @@ export default function SpeechSessionPage() {
               )}
 
               {/* Action buttons */}
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center gap-4 mt-8">
                 {audioBlob && (
                   <>
                     <Button
                       variant="outline"
-                      className="lumo-button-secondary"
+                      className="rounded-2xl h-14 px-6 border-2 border-gray-200 text-gray-600 font-bold hover:bg-gray-50"
                       onClick={resetRecording}
                     >
-                      <RotateCcw className="mr-2 h-4 w-4" />
+                      <RotateCcw className="mr-2 h-5 w-5" />
                       Intentar de nuevo
                     </Button>
                     {currentPhoneme < phonemes.length - 1 ? (
                       <Button
-                        className="lumo-button"
+                        className="bg-lumo-primary text-white hover:bg-lumo-primary/90 btn-3d rounded-2xl h-14 px-8 font-bold text-lg"
                         onClick={nextPhoneme}
                       >
                         Siguiente fonema
                       </Button>
                     ) : (
                       <Link to="/children">
-                        <Button className="lumo-button">
-                          <CheckCircle className="mr-2 h-4 w-4" />
-                          Completar sesión
+                        <Button className="bg-green-500 text-white hover:bg-green-600 btn-3d rounded-2xl h-14 px-8 font-bold text-lg">
+                          <CheckCircle className="mr-2 h-6 w-6" />
+                          ¡Completar sesión!
                         </Button>
                       </Link>
                     )}
@@ -305,15 +309,15 @@ export default function SpeechSessionPage() {
           </Card>
 
           {/* Lumi encouragement */}
-          <Card className="mt-6 bg-gradient-to-r from-purple-50 to-pink-50">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-lumo-primary/10 flex items-center justify-center text-2xl">
+          <Card className="mt-8 rounded-3xl bg-gradient-to-r from-purple-100 via-pink-50 to-orange-50 border-0 shadow-lg lumi-container">
+            <CardContent className="p-8">
+              <div className="flex items-center gap-6">
+                <div className="w-20 h-20 rounded-full bg-white shadow-inner flex items-center justify-center text-4xl">
                   🌟
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Lumi dice:</h3>
-                  <p className="text-gray-600 mt-1">
+                  <h3 className="font-black text-2xl text-purple-900">Lumi dice:</h3>
+                  <p className="text-purple-700 mt-2 font-medium text-lg leading-relaxed">
                     {score === null
                       ? '¡Hola! Estoy aquí para ayudarte. Presiona el micrófono y di el sonido que ves arriba.'
                       : score >= 80

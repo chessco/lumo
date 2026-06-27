@@ -28,11 +28,54 @@ async function main() {
       password: hashedPassword,
       firstName: 'Admin',
       lastName: 'Lumo',
+      role: 'admin',
     },
   });
   console.log('✅ Admin user created:', adminUser.email);
 
-  // Create membership
+  // Create teacher user
+  const teacherUser = await prisma.user.upsert({
+    where: { email: 'teacher@pitayacode.io' },
+    update: {},
+    create: {
+      email: 'teacher@pitayacode.io',
+      password: hashedPassword,
+      firstName: 'María',
+      lastName: 'García',
+      role: 'teacher',
+    },
+  });
+  console.log('✅ Teacher user created:', teacherUser.email);
+
+  // Create parent user
+  const parentUser = await prisma.user.upsert({
+    where: { email: 'parent@pitayacode.io' },
+    update: {},
+    create: {
+      email: 'parent@pitayacode.io',
+      password: hashedPassword,
+      firstName: 'Carlos',
+      lastName: 'López',
+      role: 'parent',
+    },
+  });
+  console.log('✅ Parent user created:', parentUser.email);
+
+  // Create child user
+  const childUser = await prisma.user.upsert({
+    where: { email: 'child@pitayacode.io' },
+    update: {},
+    create: {
+      email: 'child@pitayacode.io',
+      password: hashedPassword,
+      firstName: 'Sofía',
+      lastName: 'García',
+      role: 'child',
+    },
+  });
+  console.log('✅ Child user created:', childUser.email);
+
+  // Create memberships
   await prisma.membership.upsert({
     where: {
       userId_tenant_id: {
@@ -46,7 +89,89 @@ async function main() {
       tenant_id: organization.id,
     },
   });
-  console.log('✅ Membership created');
+
+  await prisma.membership.upsert({
+    where: {
+      userId_tenant_id: {
+        userId: teacherUser.id,
+        tenant_id: organization.id,
+      },
+    },
+    update: {},
+    create: {
+      userId: teacherUser.id,
+      tenant_id: organization.id,
+    },
+  });
+
+  await prisma.membership.upsert({
+    where: {
+      userId_tenant_id: {
+        userId: parentUser.id,
+        tenant_id: organization.id,
+      },
+    },
+    update: {},
+    create: {
+      userId: parentUser.id,
+      tenant_id: organization.id,
+    },
+  });
+
+  await prisma.membership.upsert({
+    where: {
+      userId_tenant_id: {
+        userId: childUser.id,
+        tenant_id: organization.id,
+      },
+    },
+    update: {},
+    create: {
+      userId: childUser.id,
+      tenant_id: organization.id,
+    },
+  });
+  console.log('✅ Memberships created');
+
+  // Create sample children
+  const children = [
+    {
+      tenant_id: organization.id,
+      parentId: parentUser.id,
+      teacherId: teacherUser.id,
+      firstName: 'Sofía',
+      lastName: 'García',
+      dateOfBirth: new Date('2018-05-15'),
+      avatar: '👧',
+    },
+    {
+      tenant_id: organization.id,
+      parentId: parentUser.id,
+      teacherId: teacherUser.id,
+      firstName: 'Mateo',
+      lastName: 'López',
+      dateOfBirth: new Date('2019-03-22'),
+      avatar: '👦',
+    },
+    {
+      tenant_id: organization.id,
+      parentId: parentUser.id,
+      teacherId: teacherUser.id,
+      firstName: 'Valentina',
+      lastName: 'Martínez',
+      dateOfBirth: new Date('2017-11-08'),
+      avatar: '👧',
+    },
+  ];
+
+  for (const child of children) {
+    await prisma.child.upsert({
+      where: { id: child.firstName.toLowerCase() + '-child' },
+      update: {},
+      create: child,
+    });
+  }
+  console.log('✅ Children created');
 
   // Create sample phonemes for Spanish
   const phonemes = [

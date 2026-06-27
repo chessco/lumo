@@ -28,70 +28,70 @@ export default function ChildProfilePage() {
   }, []);
 
   return (
-    <div className="bg-background text-on-surface font-body-lg min-h-screen relative overflow-hidden bg-[radial-gradient(circle_at_top_left,#fff8f4_0%,#fef1e5_50%,#e9ddff_100%)]">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-purple-50 via-white to-orange-50 font-sans">
       {/* Atmospheric Floating Stars */}
-      <div className="absolute inset-0 pointer-events-none" id="star-field"></div>
+      <div className="absolute inset-0 pointer-events-none opacity-50" id="star-field"></div>
       
-      {/* Top AppBar (Brand Identity) */}
-      <header className="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-24 w-full z-50 relative">
-        <div className="flex items-center gap-sm">
-          <span className="text-primary font-headline-xl tracking-tight">Lumo</span>
+      {/* Top AppBar */}
+      <header className="flex justify-between items-center px-6 md:px-12 h-24 w-full z-50 relative">
+        <div className="flex items-center gap-3">
+          <span className="text-purple-600 font-black text-3xl tracking-tight">Lumo</span>
         </div>
-        <div className="flex gap-md items-center">
-          <button className="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all active:scale-95 active:shadow-inner">
+        <div className="flex gap-4 items-center">
+          <button className="w-12 h-12 rounded-full flex items-center justify-center text-gray-500 hover:bg-white hover:shadow-md transition-all active:scale-95 border-2 border-transparent hover:border-gray-200">
             <span className="material-symbols-outlined">settings</span>
           </button>
         </div>
       </header>
       
       {/* Main Content: Profile Selector Canvas */}
-      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-6rem)] px-margin-mobile relative z-10 pb-xl">
-        <div className="text-center mb-xl">
-          <h1 className="font-headline-lg-mobile md:font-headline-lg text-primary mb-xs">Who's learning today?</h1>
-          <p className="font-body-md text-on-surface-variant max-w-md mx-auto">Pick your explorer's profile to start the adventure.</p>
+      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-6rem)] px-6 relative z-10 pb-16">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-black text-purple-700 mb-3 tracking-tight">¿Quién aprenderá hoy? 🌟</h1>
+          <p className="text-lg md:text-xl font-medium text-gray-500 max-w-md mx-auto">Elige el perfil de tu explorador para comenzar la aventura.</p>
         </div>
         
         {/* Profiles Bento/Grid Layout */}
-        <div className="flex flex-wrap justify-center gap-lg md:gap-xl w-full max-w-5xl">
+        <div className="flex flex-wrap justify-center gap-8 md:gap-12 w-full max-w-5xl">
           {/* Child 1: Leo */}
-          <Link to="/dashboard" className="flex flex-col items-center group cursor-pointer decoration-transparent">
+          <Link to="/child-dashboard" className="flex flex-col items-center group cursor-pointer decoration-transparent">
             <div className="relative">
-              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-[8px] border-surface-container-highest bg-surface-container shadow-lg hover:shadow-[0_0_30px_10px_rgba(255,184,77,0.4)] transition-all duration-300 overflow-hidden">
+              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-[8px] border-white bg-blue-50 shadow-xl hover:shadow-[0_0_30px_10px_rgba(59,130,246,0.4)] transition-all duration-300 overflow-hidden hover:-translate-y-2">
                 <img className="w-full h-full object-cover" alt="Leo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCyjeRmDZdD5TK7bwPUBZTvvW5dcotvliy1-FBYTbr8Kcf_KL77ks8FGyW5_0V9NMDUNBMRim9qHFvEGqE4cnUY7hQsP8D-w6Sw7paqcyoAjWpUPNmI8qxhj4-i9QEebmQowEZ5ZQypX4bM4OoOk7Qn8mARDReak03rfRmjPFouM0Lc4XNdV7wRbq_2inqyn-D5KxvOQ9GR71kUUHa57h7LMwd4hAkxgUiUWx8gbzW3KKPcSSlBZqiQFITgy28w-67j9OWnD19"/>
               </div>
-              <div className="absolute -top-2 -right-2 bg-tertiary text-on-tertiary rounded-full px-3 py-1 font-label-caps text-sm shadow-md">LVL 4</div>
+              <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 rounded-full px-4 py-1 font-bold text-sm shadow-md border-2 border-white">NIVEL 4</div>
             </div>
-            <span className="mt-md font-headline-lg-mobile md:font-headline-lg text-on-surface group-hover:text-primary transition-colors">Leo</span>
+            <span className="mt-6 text-2xl md:text-3xl font-black text-gray-800 group-hover:text-blue-600 transition-colors">Leo</span>
           </Link>
           
           {/* Child 2: Mia */}
-          <Link to="/dashboard" className="flex flex-col items-center group cursor-pointer decoration-transparent">
+          <Link to="/child-dashboard" className="flex flex-col items-center group cursor-pointer decoration-transparent">
             <div className="relative">
-              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-[8px] border-surface-container-highest bg-surface-container shadow-lg hover:shadow-[0_0_30px_10px_rgba(255,184,77,0.4)] transition-all duration-300 overflow-hidden">
+              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-[8px] border-white bg-pink-50 shadow-xl hover:shadow-[0_0_30px_10px_rgba(236,72,153,0.4)] transition-all duration-300 overflow-hidden hover:-translate-y-2">
                 <img className="w-full h-full object-cover" alt="Mia" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSuNP2sXpWx8OrdaD_EFwF9hV7ZHuiij8thGdHMFTrIPlcElbZT3XirkIq4dRKpR7SST-NM-5B7bGwXGCqV3mSS0qfSfUbu8U53csokF1XOfgCos1h6lHCxGU3P-yE-YiL4TGWr8zi3l3-ryNr4pJOoP-zG9ca_rMFCPM9NCX2PFqxk0ZBu2kr1RnnE6wPmE950VwC_CKmwhrWKt1bcdQOEp9X_RUaHIRSqfXK88T4N9kCaG-gtQgMvWQ_A54azUsPXreu50MT"/>
               </div>
-              <div className="absolute -top-2 -right-2 bg-tertiary text-on-tertiary rounded-full px-3 py-1 font-label-caps text-sm shadow-md">LVL 7</div>
+              <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 rounded-full px-4 py-1 font-bold text-sm shadow-md border-2 border-white">NIVEL 7</div>
             </div>
-            <span className="mt-md font-headline-lg-mobile md:font-headline-lg text-on-surface group-hover:text-primary transition-colors">Mia</span>
+            <span className="mt-6 text-2xl md:text-3xl font-black text-gray-800 group-hover:text-pink-600 transition-colors">Mia</span>
           </Link>
           
           {/* Add New Explorer Button */}
-          <div className="flex flex-col items-center group cursor-pointer">
-            <button className="w-40 h-40 md:w-56 md:h-56 rounded-full border-[8px] border-dashed border-outline-variant bg-surface-bright flex flex-col items-center justify-center hover:bg-white hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md active:scale-95 active:shadow-inner">
-              <div className="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform mb-sm">
-                <span className="material-symbols-outlined text-4xl" style={{fontVariationSettings: "'wght' 700"}}>add</span>
+          <Link to="/children" className="flex flex-col items-center group cursor-pointer">
+            <button className="w-40 h-40 md:w-56 md:h-56 rounded-full border-[6px] border-dashed border-purple-200 bg-white/50 flex flex-col items-center justify-center hover:bg-white hover:border-purple-400 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-2">
+              <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform mb-2 shadow-inner">
+                <span className="material-symbols-outlined text-5xl font-bold">add</span>
               </div>
             </button>
-            <span className="mt-md font-headline-lg-mobile md:font-headline-lg text-on-surface-variant group-hover:text-primary transition-colors text-center leading-tight">Add a New<br/>Explorer</span>
-          </div>
+            <span className="mt-6 text-xl md:text-2xl font-bold text-gray-400 group-hover:text-purple-600 transition-colors text-center leading-tight">Agregar Nuevo<br/>Explorador</span>
+          </Link>
         </div>
         
         {/* Secondary CTA: Parent Mode */}
-        <div className="mt-xl">
-          <button className="flex items-center gap-sm px-xl py-md bg-secondary text-on-secondary rounded-full font-interactive-text shadow-[0_8px_0_0_#5520b3] active:shadow-none active:translate-y-2 transition-all">
+        <div className="mt-16">
+          <Link to="/children" className="flex items-center gap-3 px-8 py-4 bg-gray-800 text-white rounded-full font-bold text-lg btn-3d hover:bg-gray-700">
             <span className="material-symbols-outlined">lock</span>
-            Parent Dashboard
-          </button>
+            Panel de Padres
+          </Link>
         </div>
       </main>
     </div>

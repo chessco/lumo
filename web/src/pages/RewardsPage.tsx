@@ -70,87 +70,88 @@ export default function RewardsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 bg-gradient-to-b from-yellow-50 via-white to-orange-50 min-h-screen p-6 rounded-3xl">
       {/* Header */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 bg-white p-6 rounded-3xl shadow-sm border-2 border-yellow-100">
         <Link to={`/children/${childId}`}>
-          <Button variant="ghost" size="icon">
-            <ArrowLeft className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="hover:bg-yellow-100 rounded-full h-12 w-12">
+            <ArrowLeft className="h-6 w-6 text-yellow-700" />
           </Button>
         </Link>
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-lumo-primary/10 flex items-center justify-center text-2xl">
+          <div className="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center text-4xl shadow-inner border-2 border-yellow-200">
             {rewardsData.child.avatar}
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
-              Recompensas de {rewardsData.child.firstName}
+            <h1 className="text-4xl font-black text-gray-800 tracking-tight">
+              Recompensas de {rewardsData.child.firstName} 🏆
             </h1>
-            <p className="text-gray-600">Logros y premios obtenidos</p>
+            <p className="text-gray-500 mt-1 font-medium text-lg">Logros y premios obtenidos</p>
           </div>
         </div>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="lumo-card-hover">
-          <CardContent className="p-6 text-center">
-            <div className="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mx-auto mb-4">
-              <Trophy className="h-8 w-8 text-yellow-600" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card className="rounded-3xl border-2 border-yellow-200 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-white to-yellow-50 group">
+          <CardContent className="p-8 text-center">
+            <div className="w-20 h-20 rounded-2xl bg-yellow-100 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+              <Trophy className="h-10 w-10 text-yellow-600" />
             </div>
-            <p className="text-3xl font-bold text-gray-900">{rewardsData.badges.length}</p>
-            <p className="text-sm text-gray-600">Insignias obtenidas</p>
+            <p className="text-5xl font-black text-gray-800">{rewardsData.badges.length}</p>
+            <p className="text-md font-bold text-yellow-600 mt-2 uppercase tracking-wider">Insignias obtenidas</p>
           </CardContent>
         </Card>
-        <Card className="lumo-card-hover">
-          <CardContent className="p-6 text-center">
-            <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
-              <Star className="h-8 w-8 text-purple-600" />
+        <Card className="rounded-3xl border-2 border-purple-200 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-white to-purple-50 group">
+          <CardContent className="p-8 text-center">
+            <div className="w-20 h-20 rounded-2xl bg-purple-100 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+              <Star className="h-10 w-10 text-purple-600" />
             </div>
-            <p className="text-3xl font-bold text-gray-900">Nivel {rewardsData.child.level}</p>
-            <p className="text-sm text-gray-600">{rewardsData.child.experience} XP</p>
+            <p className="text-5xl font-black text-gray-800">Nivel {rewardsData.child.level}</p>
+            <p className="text-md font-bold text-purple-600 mt-2 uppercase tracking-wider">{rewardsData.child.experience} XP</p>
           </CardContent>
         </Card>
-        <Card className="lumo-card-hover">
-          <CardContent className="p-6 text-center">
-            <div className="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-4">
-              <Flame className="h-8 w-8 text-orange-600" />
+        <Card className="rounded-3xl border-2 border-orange-200 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-white to-orange-50 group">
+          <CardContent className="p-8 text-center">
+            <div className="w-20 h-20 rounded-2xl bg-orange-100 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+              <Flame className="h-10 w-10 text-orange-600" />
             </div>
-            <p className="text-3xl font-bold text-gray-900">
+            <p className="text-5xl font-black text-gray-800">
               {rewardsData.milestones.filter(m => m.completed).length}
             </p>
-            <p className="text-sm text-gray-600">Hitos completados</p>
+            <p className="text-md font-bold text-orange-600 mt-2 uppercase tracking-wider">Hitos completados</p>
           </CardContent>
         </Card>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Badges */}
-        <Card className="lumo-card">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Award className="h-5 w-5 text-yellow-500" />
+        <Card className="rounded-3xl border-2 border-yellow-200 shadow-md bg-white">
+          <CardHeader className="bg-yellow-50/50 rounded-t-3xl border-b-2 border-yellow-100 pb-6 pt-6">
+            <CardTitle className="flex items-center gap-3 text-2xl font-black text-gray-800">
+              <div className="p-2 bg-yellow-100 rounded-xl">
+                <Award className="h-6 w-6 text-yellow-600" />
+              </div>
               Insignias
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-md font-medium mt-2">
               Insignias obtenidas por logros
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <CardContent className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {rewardsData.badges.map((badge) => (
-                <div key={badge.id} className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-                  <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-2xl">
+                <div key={badge.id} className="flex items-center gap-4 p-5 bg-gray-50 rounded-2xl border-2 border-gray-100 hover:shadow-md transition-shadow">
+                  <div className="w-14 h-14 rounded-2xl bg-white shadow-sm border border-yellow-100 flex items-center justify-center text-3xl">
                     {badge.icon}
                   </div>
                   <div className="flex-1">
-                    <p className="font-medium text-gray-900">{badge.name}</p>
-                    <p className="text-sm text-gray-600">{badge.description}</p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className={`text-xs px-2 py-1 rounded-full ${getBadgeTypeColor(badge.type)}`}>
+                    <p className="font-bold text-gray-900">{badge.name}</p>
+                    <p className="text-xs text-gray-500 font-medium leading-tight mt-1 mb-2">{badge.description}</p>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-xs px-2 py-1 rounded-full font-bold ${getBadgeTypeColor(badge.type)}`}>
                         {getBadgeTypeLabel(badge.type)}
                       </span>
-                      <span className="text-xs text-gray-500">{badge.earnedAt}</span>
                     </div>
                   </div>
                 </div>
@@ -160,45 +161,47 @@ export default function RewardsPage() {
         </Card>
 
         {/* Milestones */}
-        <Card className="lumo-card">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Target className="h-5 w-5 text-blue-500" />
+        <Card className="rounded-3xl border-2 border-blue-200 shadow-md bg-white">
+          <CardHeader className="bg-blue-50/50 rounded-t-3xl border-b-2 border-blue-100 pb-6 pt-6">
+            <CardTitle className="flex items-center gap-3 text-2xl font-black text-gray-800">
+              <div className="p-2 bg-blue-100 rounded-xl">
+                <Target className="h-6 w-6 text-blue-600" />
+              </div>
               Hitos
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-md font-medium mt-2">
               Progreso hacia objetivos
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="p-6">
+            <div className="space-y-5">
               {rewardsData.milestones.map((milestone) => (
-                <div key={milestone.id} className="p-4 bg-gray-50 rounded-xl">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-xl ${
-                      milestone.completed ? 'bg-green-100' : 'bg-gray-100'
+                <div key={milestone.id} className="p-5 bg-gray-50 rounded-2xl border-2 border-gray-100 hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-sm border ${
+                      milestone.completed ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'
                     }`}>
                       {milestone.icon}
                     </div>
                     <div className="flex-1">
-                      <p className="font-medium text-gray-900">{milestone.name}</p>
-                      <p className="text-sm text-gray-600">{milestone.description}</p>
+                      <p className="font-bold text-gray-900">{milestone.name}</p>
+                      <p className="text-sm text-gray-500 font-medium">{milestone.description}</p>
                     </div>
                     {milestone.completed && (
-                      <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
-                        <span className="text-white text-xs">✓</span>
+                      <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center shadow-md">
+                        <span className="text-white font-bold">✓</span>
                       </div>
                     )}
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
+                  <div className="w-full bg-gray-200 rounded-full h-4 shadow-inner overflow-hidden">
                     <div
-                      className={`h-3 rounded-full ${
+                      className={`h-4 rounded-full transition-all duration-1000 ease-out ${
                         milestone.completed ? 'bg-green-500' : 'bg-lumo-primary'
                       }`}
                       style={{ width: `${(milestone.progress / milestone.total) * 100}%` }}
                     />
                   </div>
-                  <p className="text-xs text-gray-500 mt-1 text-right">
+                  <p className="text-sm font-bold text-gray-500 mt-2 text-right">
                     {milestone.progress}/{milestone.total}
                   </p>
                 </div>
@@ -209,40 +212,42 @@ export default function RewardsPage() {
       </div>
 
       {/* Leaderboard */}
-      <Card className="lumo-card">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Trophy className="h-5 w-5 text-yellow-500" />
-            Tabla de Clasificación
+      <Card className="rounded-3xl border-2 border-yellow-200 shadow-xl overflow-hidden bg-white">
+        <CardHeader className="bg-yellow-50/50 pb-6 pt-6">
+          <CardTitle className="flex items-center gap-3 text-2xl font-black text-gray-800">
+            <div className="p-2 bg-yellow-100 rounded-xl">
+              <Trophy className="h-6 w-6 text-yellow-600" />
+            </div>
+            Tabla de Clasificación ⭐
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-md font-medium mt-2">
             Ranking de niños por nivel y experiencia
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           <div className="space-y-4">
             {rewardsData.leaderboard.map((child, index) => (
-              <div key={index} className={`flex items-center gap-4 p-4 rounded-xl ${
-                index === 0 ? 'bg-yellow-50' :
-                index === 1 ? 'bg-gray-50' :
-                index === 2 ? 'bg-orange-50' :
-                'bg-white'
+              <div key={index} className={`flex items-center gap-5 p-5 rounded-2xl transition-all hover:scale-[1.01] border-2 ${
+                index === 0 ? 'bg-yellow-50/80 border-yellow-200 shadow-sm' :
+                index === 1 ? 'bg-gray-50/80 border-gray-200 shadow-sm' :
+                index === 2 ? 'bg-orange-50/80 border-orange-200 shadow-sm' :
+                'bg-white border-transparent hover:border-gray-100'
               }`}>
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl shadow-inner ${
                   index === 0 ? 'bg-yellow-100 text-yellow-600' :
-                  index === 1 ? 'bg-gray-100 text-gray-600' :
+                  index === 1 ? 'bg-gray-200 text-gray-600' :
                   index === 2 ? 'bg-orange-100 text-orange-600' :
                   'bg-gray-100 text-gray-400'
                 }`}>
-                  {child.rank}
+                  #{child.rank}
                 </div>
                 <div className="flex-1">
-                  <p className="font-medium text-gray-900">{child.name}</p>
-                  <p className="text-sm text-gray-600">Nivel {child.level}</p>
+                  <p className="font-bold text-gray-900 text-lg">{child.name}</p>
+                  <p className="text-sm font-medium text-gray-500">Nivel {child.level}</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-semibold text-lumo-primary">{child.experience} XP</p>
-                  <p className="text-sm text-gray-500">{child.streak} días</p>
+                  <p className="font-black text-lg text-lumo-primary">{child.experience} XP</p>
+                  <p className="text-sm font-bold text-orange-500">{child.streak} días 🔥</p>
                 </div>
               </div>
             ))}

@@ -1,0 +1,221 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "noResults": "No results found",
+    "welcome": "Welcome",
+    "logout": "Log out",
+    "login": "Log in",
+    "register": "Sign up",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "address": "Address",
+    "language": "Language",
+    "spanish": "Spanish",
+    "english": "English"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "children": "Children",
+    "exercises": "Exercises",
+    "progress": "Progress",
+    "rewards": "Rewards",
+    "shop": "Shop",
+    "chat": "Chat with Lumi",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "auth": {
+    "loginTitle": "Log In",
+    "loginSubtitle": "Access your Lumo account",
+    "registerTitle": "Create Account",
+    "registerSubtitle": "Join the Lumo adventure",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "demoCredentials": "Demo credentials",
+    "loginButton": "Log In",
+    "registerButton": "Sign Up",
+    "loginSuccess": "Successfully logged in",
+    "loginError": "Login error",
+    "invalidCredentials": "Invalid credentials"
+  },
+  "home": {
+    "title": "Welcome to Lumo",
+    "subtitle": "The AI-powered educational platform for children",
+    "description": "Improve your children's pronunciation and speech in a fun and safe way",
+    "features": {
+      "speech": "Speech Practice",
+      "speechDesc": "Interactive pronunciation exercises",
+      "ai": "AI Companion",
+      "aiDesc": "Lumi, your smart friend",
+      "gamification": "Gamification",
+      "gamificationDesc": "Levels, rewards and achievements",
+      "progress": "Progress",
+      "progressDesc": "Detailed learning tracking"
+    },
+    "startButton": "Start Adventure",
+    "learnMore": "Learn more"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Hello, {{name}}!",
+    "subtitle": "Here's how Leo is progressing this week.",
+    "stats": {
+      "sessions": "Sessions",
+      "exercises": "Exercises",
+      "streak": "Streak",
+      "level": "Level"
+    },
+    "totalTime": "Total Learning Time",
+    "wordsMastered": "Words Mastered",
+    "pronunciationAccuracy": "Pronunciation Accuracy",
+    "weeklyProgress": "Weekly Progress",
+    "vocabulary": "Vocabulary",
+    "speech": "Speech",
+    "lumiTips": "Lumo Tips",
+    "curriculumProgress": "Curriculum Progress",
+    "downloadReport": "Download Report",
+    "lumiTips": {
+      "title": "Lumo Tips",
+      "focusR": "Focus on 'R' Sounds",
+      "focusRDesc": "Leo had some trouble with \"Rabbit\" and \"Rocket\" today.",
+      "milestone": "New Milestone Near!",
+      "milestoneDesc": "Only 5 more animal names to unlock the \"Zoo Explorer\" badge.",
+      "eveningReading": "Evening Reading",
+      "eveningReadingDesc": "\"The Starry Night\" is 80% complete. A great choice for bedtime!",
+      "unlockGames": "Unlock Practice Games"
+    },
+    "weekdays": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "recentActivity": "Recent Activity",
+    "quickActions": "Quick Actions"
+  },
+  "children": {
+    "title": "My Children",
+    "addChild": "Add Child",
+    "editChild": "Edit Child",
+    "deleteChild": "Delete Child",
+    "name": "Name",
+    "age": "Age",
+    "level": "Level",
+    "progress": "Progress",
+    "noChildren": "No children registered",
+    "addChildPrompt": "Add a child to get started"
+  },
+  "speech": {
+    "title": "Lumo Speak",
+    "startSession": "Start Session",
+    "endSession": "End Session",
+    "recording": "Recording...",
+    "listening": "Listening...",
+    "score": "Score",
+    "pronunciation": "Pronunciation",
+    "excellent": "Excellent!",
+    "good": "Good!",
+    "keepTrying": "Keep trying!",
+    "phoneme": "Phoneme",
+    "word": "Word",
+    "sentence": "Sentence",
+    "repeat": "Repeat",
+    "next": "Next",
+    "tryAgain": "Try again"
+  },
+  "lumi": {
+    "title": "Chat with Lumi",
+    "placeholder": "Type a message...",
+    "send": "Send",
+    "greeting": "Hi! I'm Lumi, your learning friend. What do you want to practice today?",
+    "encouragement": "You're doing great!",
+    "celebration": "Congratulations! You completed the exercise!"
+  },
+  "exercises": {
+    "title": "Exercises",
+    "vowels": "Vowels",
+    "consonants": "Consonants",
+    "words": "Words",
+    "sentences": "Sentences",
+    "difficulty": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "start": "Start",
+    "completed": "Completed",
+    "locked": "Locked"
+  },
+  "progress": {
+    "title": "My Progress",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "totalSessions": "Total Sessions",
+    "totalTime": "Total Time",
+    "averageScore": "Average Score",
+    "streak": "Current Streak",
+    "level": "Level",
+    "experience": "Experience",
+    "nextLevel": "Next Level"
+  },
+  "rewards": {
+    "title": "My Rewards",
+    "badges": "Badges",
+    "trophies": "Trophies",
+    "achievements": "Achievements",
+    "new": "New Reward!",
+    "earned": "Earned",
+    "locked": "Locked"
+  },
+  "shop": {
+    "title": "Magic Shop",
+    "coins": "Coins",
+    "buy": "Buy",
+    "purchased": "Purchased",
+    "insufficient": "Insufficient coins",
+    "items": {
+      "avatar": "Avatars",
+      "background": "Backgrounds",
+      "sound": "Sounds",
+      "effect": "Effects"
+    }
+  },
+  "parent": {
+    "title": "Parent Dashboard",
+    "children": "My Children",
+    "progress": "Progress",
+    "settings": "Settings",
+    "reports": "Reports",
+    "notifications": "Notifications"
+  },
+  "errors": {
+    "notFound": "Page not found",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Access forbidden",
+    "serverError": "Server error",
+    "networkError": "Network error",
+    "tryAgain": "Try again",
+    "goHome": "Go home"
+  }
+}

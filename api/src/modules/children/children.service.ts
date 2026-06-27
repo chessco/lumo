@@ -12,6 +12,7 @@ export class ChildrenService {
     dateOfBirth?: Date;
     avatar?: string;
     parentId?: string;
+    teacherId?: string;
     preferences?: any;
   }) {
     const tenantId = getTenantId();
@@ -41,6 +42,14 @@ export class ChildrenService {
             lastName: true,
           },
         },
+        teacher: {
+          select: {
+            id: true,
+            email: true,
+            firstName: true,
+            lastName: true,
+          },
+        },
       },
     });
   }
@@ -56,6 +65,14 @@ export class ChildrenService {
       },
       include: {
         parent: {
+          select: {
+            id: true,
+            email: true,
+            firstName: true,
+            lastName: true,
+          },
+        },
+        teacher: {
           select: {
             id: true,
             email: true,
@@ -97,6 +114,52 @@ export class ChildrenService {
           take: 1,
         },
       },
+    });
+  }
+
+  async findByTeacher(teacherId: string) {
+    const tenantId = getTenantId();
+    
+    return this.databaseService.child.findMany({
+      where: {
+        tenant_id: tenantId,
+        teacherId,
+        isActive: true,
+      },
+      include: {
+        parent: {
+          select: {
+            id: true,
+            email: true,
+            firstName: true,
+            lastName: true,
+          },
+        },
+        speechProgress: {
+          orderBy: { date: 'desc' },
+          take: 1,
+        },
+      },
+    });
+  }
+
+  async assignTeacher(childId: string, teacherId: string) {
+    const tenantId = getTenantId();
+    
+    const child = await this.databaseService.child.findFirst({
+      where: {
+        id: childId,
+        tenant_id: tenantId,
+      },
+    });
+
+    if (!child) {
+      throw new NotFoundException(`Child with ID ${childId} not found`);
+    }
+
+    return this.databaseService.child.update({
+      where: { id: childId },
+      data: { teacherId },
     });
   }
 

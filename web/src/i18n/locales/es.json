@@ -1,0 +1,221 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "noResults": "No se encontraron resultados",
+    "welcome": "Bienvenido",
+    "logout": "Cerrar sesión",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "language": "Idioma",
+    "spanish": "Español",
+    "english": "Inglés"
+  },
+  "nav": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "children": "Niños",
+    "exercises": "Ejercicios",
+    "progress": "Progreso",
+    "rewards": "Recompensas",
+    "shop": "Tienda",
+    "chat": "Chat con Lumi",
+    "profile": "Perfil",
+    "settings": "Configuración"
+  },
+  "auth": {
+    "loginTitle": "Iniciar Sesión",
+    "loginSubtitle": "Accede a tu cuenta de Lumo",
+    "registerTitle": "Crear Cuenta",
+    "registerSubtitle": "Únete a la aventura de Lumo",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "demoCredentials": "Credenciales de demostración",
+    "loginButton": "Iniciar Sesión",
+    "registerButton": "Registrarse",
+    "loginSuccess": "Sesión iniciada correctamente",
+    "loginError": "Error al iniciar sesión",
+    "invalidCredentials": "Credenciales inválidas"
+  },
+  "home": {
+    "title": "Bienvenido a Lumo",
+    "subtitle": "La plataforma educativa con IA para niños",
+    "description": "Mejora la pronunciación y el habla de tus hijos de manera divertida y segura",
+    "features": {
+      "speech": "Práctica de Habla",
+      "speechDesc": "Ejercicios interactivos de pronunciación",
+      "ai": "Compañero IA",
+      "aiDesc": "Lumi, tu amigo inteligente",
+      "gamification": "Gamificación",
+      "gamificationDesc": "Niveles, recompensas y logros",
+      "progress": "Progreso",
+      "progressDesc": "Seguimiento detallado del aprendizaje"
+    },
+    "startButton": "Comenzar Aventura",
+    "learnMore": "Saber más"
+  },
+  "dashboard": {
+    "title": "Panel de Control",
+    "welcome": "¡Hola, {{name}}!",
+    "subtitle": "Así es como Leo progresa esta semana.",
+    "stats": {
+      "sessions": "Sesiones",
+      "exercises": "Ejercicios",
+      "streak": "Racha",
+      "level": "Nivel"
+    },
+    "totalTime": "Tiempo Total de Aprendizaje",
+    "wordsMastered": "Palabras Dominadas",
+    "pronunciationAccuracy": "Precisión de Pronunciación",
+    "weeklyProgress": "Progreso Semanal",
+    "vocabulary": "Vocabulario",
+    "speech": "Habla",
+    "lumiTips": "Consejos de Lumo",
+    "curriculumProgress": "Progreso del Plan de Estudios",
+    "downloadReport": "Descargar Reporte",
+    "lumiTips": {
+      "title": "Consejos de Lumo",
+      "focusR": "Enfócate en los sonidos 'R'",
+      "focusRDesc": "Leo tuvo dificultades con \"Rabbit\" y \"Rocket\" hoy.",
+      "milestone": "¡Nuevo hito cerca!",
+      "milestoneDesc": "Solo 5 nombres de animales más para desbloquear la insignia \"Explorador del Zoológico\".",
+      "eveningReading": "Lectura nocturna",
+      "eveningReadingDesc": "\"La Noche Estrellada\" está 80% completa. ¡Una gran elección para dormir!",
+      "unlockGames": "Desbloquear Juegos de Práctica"
+    },
+    "weekdays": {
+      "mon": "Lun",
+      "tue": "Mar",
+      "wed": "Mié",
+      "thu": "Jue",
+      "fri": "Vie",
+      "sat": "Sáb",
+      "sun": "Dom"
+    },
+    "recentActivity": "Actividad Reciente",
+    "quickActions": "Acciones Rápidas"
+  },
+  "children": {
+    "title": "Mis Niños",
+    "addChild": "Agregar Niño",
+    "editChild": "Editar Niño",
+    "deleteChild": "Eliminar Niño",
+    "name": "Nombre",
+    "age": "Edad",
+    "level": "Nivel",
+    "progress": "Progreso",
+    "noChildren": "No hay niños registrados",
+    "addChildPrompt": "Agrega un niño para comenzar"
+  },
+  "speech": {
+    "title": "Lumo Speak",
+    "startSession": "Iniciar Sesión",
+    "endSession": "Finalizar Sesión",
+    "recording": "Grabando...",
+    "listening": "Escuchando...",
+    "score": "Puntuación",
+    "pronunciation": "Pronunciación",
+    "excellent": "¡Excelente!",
+    "good": "¡Bien!",
+    "keepTrying": "¡Sigue intentando!",
+    "phoneme": "Fonema",
+    "word": "Palabra",
+    "sentence": "Oración",
+    "repeat": "Repetir",
+    "next": "Siguiente",
+    "tryAgain": "Intentar de nuevo"
+  },
+  "lumi": {
+    "title": "Chat con Lumi",
+    "placeholder": "Escribe un mensaje...",
+    "send": "Enviar",
+    "greeting": "¡Hola! Soy Lumi, tu amigo de aprendizaje. ¿Qué quieres practicar hoy?",
+    "encouragement": "¡Lo estás haciendo genial!",
+    "celebration": "¡Felicidades! ¡Has completado el ejercicio!"
+  },
+  "exercises": {
+    "title": "Ejercicios",
+    "vowels": "Vocales",
+    "consonants": "Consonantes",
+    "words": "Palabras",
+    "sentences": "Oraciones",
+    "difficulty": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado"
+    },
+    "start": "Completar",
+    "completed": "Completado",
+    "locked": "Bloqueado"
+  },
+  "progress": {
+    "title": "Mi Progreso",
+    "daily": "Diario",
+    "weekly": "Semanal",
+    "monthly": "Mensual",
+    "totalSessions": "Total de Sesiones",
+    "totalTime": "Tiempo Total",
+    "averageScore": "Puntuación Promedio",
+    "streak": "Racha Actual",
+    "level": "Nivel",
+    "experience": "Experiencia",
+    "nextLevel": "Siguiente Nivel"
+  },
+  "rewards": {
+    "title": "Mis Recompensas",
+    "badges": "Insignias",
+    "trophies": "Trofeos",
+    "achievements": "Logros",
+    "new": "¡Nueva Recompensa!",
+    "earned": "Ganada",
+    "locked": "Bloqueada"
+  },
+  "shop": {
+    "title": "Tienda Mágica",
+    "coins": "Monedas",
+    "buy": "Comprar",
+    "purchased": "Comprado",
+    "insufficient": "Monedas insuficientes",
+    "items": {
+      "avatar": "Avatares",
+      "background": "Fondos",
+      "sound": "Sonidos",
+      "effect": "Efectos"
+    }
+  },
+  "parent": {
+    "title": "Panel de Padres",
+    "children": "Mis Hijos",
+    "progress": "Progreso",
+    "settings": "Configuración",
+    "reports": "Reportes",
+    "notifications": "Notificaciones"
+  },
+  "errors": {
+    "notFound": "Página no encontrada",
+    "unauthorized": "No autorizado",
+    "forbidden": "Acceso prohibido",
+    "serverError": "Error del servidor",
+    "networkError": "Error de red",
+    "tryAgain": "Intentar de nuevo",
+    "goHome": "Ir al inicio"
+  }
+}

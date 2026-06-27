@@ -43,6 +43,7 @@ model User {
   lastName    String?
   avatar      String?
   phone       String?
+  role        String    @default("parent") // admin, parent, teacher
   isActive    Boolean   @default(true)
   lastLoginAt DateTime?
   createdAt   DateTime  @default(now())
@@ -51,8 +52,9 @@ model User {
   updatedAt   DateTime  @updatedAt
 
   // Relations
-  memberships Membership[]
-  children    Child[]      @relation("ParentChildren")
+  memberships    Membership[]
+  children       Child[]      @relation("ParentChildren")
+  teachingChildren Child[]   @relation("TeacherChildren")
 
   @@map("users")
 }
@@ -128,6 +130,7 @@ model Child {
   id          String    @id @default(uuid())
   tenant_id   String
   parentId    String?
+  teacherId   String?
   firstName   String
   lastName    String?
   dateOfBirth DateTime?
@@ -140,6 +143,7 @@ model Child {
   // Relations
   organization   Organization     @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
   parent         User?            @relation("ParentChildren", fields: [parentId], references: [id])
+  teacher        User?            @relation("TeacherChildren", fields: [teacherId], references: [id])
   speechSessions SpeechSession[]
   speechProgress SpeechProgress[]
   speechRewards  SpeechReward[]

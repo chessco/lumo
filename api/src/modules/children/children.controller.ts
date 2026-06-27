@@ -19,6 +19,7 @@ export class ChildrenController {
     dateOfBirth?: Date;
     avatar?: string;
     parentId?: string;
+    teacherId?: string;
     preferences?: any;
   }) {
     return this.childrenService.create(body);
@@ -44,6 +45,20 @@ export class ChildrenController {
   @ApiResponse({ status: 200, description: 'List of children for parent' })
   async findByParent(@Param('parentId') parentId: string) {
     return this.childrenService.findByParent(parentId);
+  }
+
+  @Get('teacher/:teacherId')
+  @ApiOperation({ summary: 'Get children by teacher ID' })
+  @ApiResponse({ status: 200, description: 'List of children for teacher' })
+  async findByTeacher(@Param('teacherId') teacherId: string) {
+    return this.childrenService.findByTeacher(teacherId);
+  }
+
+  @Put(':id/assign-teacher')
+  @ApiOperation({ summary: 'Assign teacher to child' })
+  @ApiResponse({ status: 200, description: 'Teacher assigned successfully' })
+  async assignTeacher(@Param('id') id: string, @Body() body: { teacherId: string }) {
+    return this.childrenService.assignTeacher(id, body.teacherId);
   }
 
   @Put(':id')
