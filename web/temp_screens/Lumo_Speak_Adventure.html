@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumo Speak Module - Pronunciation Adventure</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .pulse-animation {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .squishy-active:active {
+            transform: scale(0.92);
+            filter: brightness(0.9);
+        }
+        .lumi-glow {
+            filter: blur(40px);
+            transition: all 0.5s ease;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fff8f4",
+                        "outline-variant": "#d6c4b0",
+                        "outline": "#837563",
+                        "secondary-fixed": "#e9ddff",
+                        "primary-fixed-dim": "#ffb951",
+                        "tertiary-fixed-dim": "#16e19d",
+                        "tertiary": "#006c49",
+                        "primary-fixed": "#ffddb3",
+                        "inverse-on-surface": "#fcefe2",
+                        "secondary": "#6b3dca",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-variant": "#ede0d4",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#11e09c",
+                        "on-secondary-fixed-variant": "#5520b3",
+                        "surface-container-high": "#f3e6da",
+                        "surface-bright": "#fff8f4",
+                        "surface-tint": "#825500",
+                        "tertiary-fixed": "#4dffb8",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#201b13",
+                        "secondary-container": "#8458e4",
+                        "surface-container": "#f9ecdf",
+                        "surface-container-highest": "#ede0d4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#23005b",
+                        "on-surface-variant": "#514536",
+                        "on-primary-container": "#714a00",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#d1bcff",
+                        "on-background": "#201b13",
+                        "on-primary-fixed": "#291800",
+                        "on-primary-fixed-variant": "#633f00",
+                        "on-tertiary-fixed": "#002113",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "gutter": "20px",
+                        "lg": "40px",
+                        "margin-desktop": "80px",
+                        "sm": "12px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Quicksand"],
+                        "label-caps": ["Quicksand"],
+                        "headline-lg": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "body-md": ["Quicksand"],
+                        "interactive-text": ["Quicksand"],
+                        "headline-xl": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "label-caps": ["16px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "interactive-text": ["22px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col overflow-hidden select-none">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center px-margin-mobile py-sm w-full z-40 bg-transparent h-20">
+<div class="flex items-center gap-4">
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-high text-primary hover:scale-105 transition-transform squishy-active">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-primary">Lumo</span>
+<span class="text-xs font-label-caps uppercase tracking-widest text-outline">Speak Mode</span>
+</div>
+</div>
+<!-- Progress Bar (The Milky Way) -->
+<div class="hidden md:flex items-center gap-6 bg-surface-container rounded-full px-6 py-2 shadow-sm border border-outline-variant/20">
+<div class="flex gap-1">
+<span class="material-symbols-outlined filled-icon text-primary text-2xl">grade</span>
+<span class="material-symbols-outlined filled-icon text-primary text-2xl">grade</span>
+<span class="material-symbols-outlined text-outline-variant text-2xl">grade</span>
+</div>
+<div class="w-48 h-6 bg-primary/20 rounded-full relative overflow-hidden">
+<div class="absolute left-0 top-0 h-full bg-gradient-to-r from-primary to-primary-container w-[66%] rounded-full shadow-[0_0_15px_rgba(130,85,0,0.4)]"></div>
+</div>
+<span class="font-bold text-primary">2/3</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">local_fire_department</span>
+<span class="font-bold text-primary">4</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center relative px-margin-mobile">
+<!-- Lumi Background Glow (The dynamic feedback visualizer) -->
+<div class="absolute lumi-glow bg-primary w-64 h-64 rounded-full opacity-20 transition-all duration-700 pointer-events-none" id="lumi-aura"></div>
+<div class="max-w-4xl w-full flex flex-col items-center text-center space-y-xl z-10">
+<!-- Word Display & Illustration -->
+<div class="flex flex-col items-center space-y-md">
+<div class="relative group">
+<div class="absolute -inset-8 bg-primary-container opacity-20 blur-2xl rounded-full group-hover:opacity-30 transition-opacity"></div>
+<div class="w-64 h-64 md:w-80 md:h-80 bg-white rounded-xl shadow-xl border-4 border-surface-container flex items-center justify-center p-8 relative overflow-hidden">
+<img class="w-full h-full object-contain" data-alt="A whimsical and soft-textured illustration of a bright monarch butterfly with shimmering golden wings, rendered in a 3D clay-morphism style. The background is a soft ivory white with subtle painterly textures. The butterfly looks friendly and approachable for a young child, with slightly rounded edges and a warm, glowing aura typical of the Lumo educational brand's premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlsm8M-Wqw4oh16BR_fNgLV1ErRw8mz3TGSC4oz2OF6TIPNfXjaudtisQfnxAoWMdgbkI-42_tLmXsF5W8IDoWQR6OHHEq8_DD4SkesAhmGnxkJfS9ckt0GzmFUIZUFuXlfTXtrmUSWY7znLVemdnA64ji0OGAXTPWclKa9Zp_8Klzvl4xYD3CGU16bATzq0FyUyYOxyuwptqBvSbZjNcIrVT7Fiw2d9S2k3FIRFy89FRMiPnfDWYm6DvkUHBR20Q_qL1aALjW"/>
+</div>
+</div>
+<h1 class="text-headline-xl font-headline-xl text-on-surface tracking-tight">Butterfly</h1>
+<p class="text-body-lg font-body-lg text-outline">Say it out loud!</p>
+</div>
+<!-- Speak Interaction Area -->
+<div class="flex flex-col items-center space-y-lg w-full">
+<div class="relative">
+<!-- Pulsing Rings -->
+<div class="absolute inset-0 bg-primary-container rounded-full pulse-animation hidden" id="mic-pulse"></div>
+<div class="absolute -inset-4 bg-primary/10 rounded-full"></div>
+<button class="relative w-32 h-32 md:w-40 md:h-40 bg-primary text-white rounded-full shadow-[0_8px_0_#633f00] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center group squishy-active" id="mic-button">
+<span class="material-symbols-outlined text-5xl md:text-6xl filled-icon group-hover:scale-110 transition-transform">mic</span>
+</button>
+</div>
+<span class="text-interactive-text font-interactive-text text-primary animate-bounce">Press and Speak</span>
+</div>
+</div>
+<!-- Mouth Guide Toggle (Floating Side Action) -->
+<div class="absolute left-margin-mobile bottom-lg md:bottom-auto md:top-1/2 md:-translate-y-1/2 flex flex-col items-center gap-4">
+<button class="w-20 h-20 md:w-24 md:h-24 bg-secondary-container text-on-secondary-container rounded-lg shadow-lg flex flex-col items-center justify-center p-2 hover:scale-105 transition-transform squishy-active border-b-4 border-[#5520b3]" id="mouth-guide-toggle">
+<span class="material-symbols-outlined text-3xl">face_6</span>
+<span class="text-[10px] font-bold uppercase mt-1">Mouth Guide</span>
+</button>
+</div>
+<!-- Lumi Speech Bubble -->
+<div class="absolute right-margin-mobile bottom-lg md:bottom-auto md:top-1/2 md:-translate-y-1/2">
+<div class="relative group">
+<div class="bg-white p-6 rounded-xl shadow-lg border-2 border-primary-container max-w-[200px] relative">
+<p class="text-body-md font-body-md text-on-surface leading-snug">"You're doing great! Try to stretch the 'But-ter' sound."</p>
+<div class="absolute -right-3 top-1/2 -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-12 border-l-primary-container"></div>
+</div>
+<div class="mt-4 flex justify-end">
+<div class="w-16 h-16 bg-gradient-to-br from-primary-fixed to-primary-container rounded-full shadow-inner flex items-center justify-center ring-4 ring-white/50">
+<span class="material-symbols-outlined text-white text-3xl filled-icon">auto_awesome</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Filter Applied: Only for top-level destinations) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end pb-safe px-4 h-24 bg-surface-container rounded-t-xl shadow-lg">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-caps font-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-3 mb-2 transform -translate-y-2 border-b-4 border-primary" href="#">
+<span class="material-symbols-outlined filled-icon">mic</span>
+<span class="text-label-caps font-label-caps">Speak</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-label-caps font-label-caps">Read</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-label-caps font-label-caps">Stories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">public</span>
+<span class="text-label-caps font-label-caps">World</span>
+</a>
+</nav>
+<!-- Mouth Guide Overlay (Hidden by default) -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[60] flex items-center justify-center hidden opacity-0 transition-opacity duration-300" id="mouth-guide-overlay">
+<div class="bg-white rounded-xl p-8 max-w-sm w-full mx-4 shadow-2xl transform scale-90 transition-transform duration-300">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-headline-lg-mobile font-headline-lg-mobile text-secondary">Watch Closely!</h3>
+<button class="text-outline hover:text-on-surface" onclick="toggleMouthGuide()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="aspect-square bg-secondary/10 rounded-lg flex items-center justify-center relative overflow-hidden border-2 border-secondary/20">
+<img class="w-full h-full object-cover" data-alt="A close-up 3D animation style illustration of a friendly round-faced character with an expressive mouth demonstrating the 'B' sound for 'Butterfly'. The character has soft purple skin, large friendly eyes, and clear lip positioning. The lighting is warm and directional, emphasizing the shape of the mouth movement against a clean, uncluttered background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvy4IWcDNYretVSQvf1PeTHNq_PiIAUGDH2DAZkXAW3stSUTfvtzAL6o6yxJN0kVCfrtfZPlEIAd6n9x9oQjIk2gt374hOUPOKpuiCrxMQFQwoEsRBQMohOafVe0zk8Fb9t3nJ1AVir3HN1Z1hWHiG4EO4-3Ltt57zfajtpUtiyjOYCrA5tc_eiHhcx3_aZf9lXu-1qmQ-D2YbKZ8AYDsQXC07fLs2OAHNXA2v2GmJBCM1lnteCmRflUETP7vpYRqB5PnMdtKI"/>
+<div class="absolute bottom-4 left-0 w-full flex justify-center">
+<div class="bg-white/80 backdrop-blur-md px-4 py-2 rounded-full text-secondary font-bold text-sm">Say "Buh"</div>
+</div>
+</div>
+<button class="w-full mt-6 py-4 bg-secondary text-white rounded-full font-bold text-lg border-b-4 border-[#5520b3] squishy-active" onclick="toggleMouthGuide()">Got it!</button>
+</div>
+</div>
+<script>
+        const micButton = document.getElementById('mic-button');
+        const micPulse = document.getElementById('mic-pulse');
+        const lumiAura = document.getElementById('lumi-aura');
+        const mouthGuideOverlay = document.getElementById('mouth-guide-overlay');
+        const mouthGuideToggle = document.getElementById('mouth-guide-toggle');
+        
+        let isRecording = false;
+
+        micButton.addEventListener('mousedown', startRecording);
+        micButton.addEventListener('mouseup', stopRecording);
+        micButton.addEventListener('touchstart', (e) => { e.preventDefault(); startRecording(); });
+        micButton.addEventListener('touchend', stopRecording);
+
+        function startRecording() {
+            isRecording = true;
+            micPulse.classList.remove('hidden');
+            lumiAura.style.backgroundColor = '#6b3dca'; // Switch to Magic Purple
+            lumiAura.classList.remove('opacity-20');
+            lumiAura.classList.add('opacity-60', 'scale-150');
+            
+            // Random dynamic feedback simulation
+            this.pulseInterval = setInterval(() => {
+                const scale = 1.2 + Math.random() * 0.8;
+                lumiAura.style.transform = `scale(${scale})`;
+                // Flickering between green (good) and purple (neutral)
+                const colors = ['#6b3dca', '#006c49', '#11e09c'];
+                lumiAura.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            }, 150);
+        }
+
+        function stopRecording() {
+            if (!isRecording) return;
+            isRecording = false;
+            micPulse.classList.add('hidden');
+            clearInterval(this.pulseInterval);
+            lumiAura.style.transform = 'scale(1)';
+            lumiAura.style.backgroundColor = '#825500'; // Back to Sunlight Orange
+            lumiAura.classList.remove('opacity-60', 'scale-150');
+            lumiAura.classList.add('opacity-20');
+        }
+
+        mouthGuideToggle.addEventListener('click', toggleMouthGuide);
+
+        function toggleMouthGuide() {
+            const isHidden = mouthGuideOverlay.classList.contains('hidden');
+            if (isHidden) {
+                mouthGuideOverlay.classList.remove('hidden');
+                setTimeout(() => {
+                    mouthGuideOverlay.classList.remove('opacity-0');
+                    mouthGuideOverlay.querySelector('div').classList.remove('scale-90');
+                }, 10);
+            } else {
+                mouthGuideOverlay.classList.add('opacity-0');
+                mouthGuideOverlay.querySelector('div').classList.add('scale-90');
+                setTimeout(() => {
+                    mouthGuideOverlay.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
+</body></html>

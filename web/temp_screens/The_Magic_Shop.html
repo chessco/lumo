@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Lumo - Magic Rewards Shop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .star-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .8; transform: scale(1.05); }
+        }
+        .lumi-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        /* Custom scrollbar for horizontal category chips */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e9ddff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#f3e6da",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f9ecdf",
+                        "primary-fixed-dim": "#ffb951",
+                        "surface-bright": "#fff8f4",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#ffb84d",
+                        "inverse-surface": "#362f27",
+                        "secondary": "#6b3dca",
+                        "inverse-on-surface": "#fcefe2",
+                        "surface": "#fff8f4",
+                        "tertiary-fixed": "#4dffb8",
+                        "on-primary-container": "#714a00",
+                        "secondary-fixed-dim": "#d1bcff",
+                        "inverse-primary": "#ffb951",
+                        "error": "#ba1a1a",
+                        "on-background": "#201b13",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#5520b3",
+                        "surface-tint": "#825500",
+                        "on-surface-variant": "#514536",
+                        "on-error": "#ffffff",
+                        "tertiary": "#006c49",
+                        "surface-dim": "#e4d8cc",
+                        "primary-fixed": "#ffddb3",
+                        "surface-variant": "#ede0d4",
+                        "on-surface": "#201b13",
+                        "surface-container-highest": "#ede0d4",
+                        "outline": "#837563",
+                        "tertiary-fixed-dim": "#16e19d",
+                        "tertiary-container": "#11e09c",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#d6c4b0",
+                        "primary": "#825500",
+                        "on-tertiary-fixed": "#002113",
+                        "on-secondary-fixed": "#23005b",
+                        "surface-container-low": "#fef1e5",
+                        "background": "#fff8f4",
+                        "on-primary-fixed-variant": "#633f00",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary-container": "#005e3f",
+                        "secondary-container": "#8458e4",
+                        "on-primary-fixed": "#291800",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "md": "24px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px",
+                        "xl": "64px",
+                        "base": "8px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "headline-lg": ["Quicksand"],
+                        "body-md": ["Quicksand"],
+                        "body-lg": ["Quicksand"],
+                        "headline-xl": ["Quicksand"],
+                        "interactive-text": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["16px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-lg": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "interactive-text": ["22px", {"lineHeight": "24px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Background Layer (Glowing Tent Aesthetic) -->
+<div class="fixed inset-0 z-0">
+
+<div class="absolute inset-0 bg-gradient-to-b from-primary-fixed/30 via-transparent to-surface"></div>
+<div class="absolute inset-0" style="background-image: radial-gradient(circle at 50% 20%, rgba(255, 221, 179, 0.4) 0%, transparent 70%);"></div>
+</div>
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface dark:bg-surface-dim shadow-[0_8px_0_0_rgba(130,85,0,0.1)] flex justify-between items-center px-margin-mobile h-20 w-full">
+<div class="flex items-center gap-base">
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-primary">Lumo</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary hover:scale-105 active:translate-y-1 transition-all">stars</button>
+<button class="material-symbols-outlined text-primary hover:scale-105 active:translate-y-1 transition-all">settings</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A soft, colorful 3D avatar of a happy child with curly hair and bright eyes, wearing a yellow sweater, rendered in a friendly Pixar-style animation aesthetic. The lighting is warm and joyful, set against a clean pastel background that matches the Lumo brand colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4HcrN2veJYQjCGQMCgqp6TmbI7tZJmwXYVWp0teEG7gLCARTGFXAMBPqnNB4CXwAysQ1oxfSYum37gZnUOx3iQuAsBgTFt9xNZbM3Ke2mC9v0mRhU-CCiOi0Dw3N5qRkAGXvyXnoy12Dlb1gFC7NCEl9Bfq2pcUGJ6mkZcHWmrMvKpiNtTmbtmHfM0JOf6kWFxEu429gM4o57F7REtUyy7plQlNgCN6d8I_kc66om-KcRUG2Tw-KZ-w_QgmUsD8gI0ReEREfN"/>
+</div>
+</div>
+</header>
+<main class="relative z-10 pt-24 pb-32 px-margin-mobile min-h-screen">
+<!-- Star Balance & Shopkeeper Section -->
+<section class="flex flex-col md:flex-row items-center justify-between gap-lg mb-xl mt-md">
+<div class="relative flex items-center gap-md">
+<div class="lumi-float relative">
+<div class="absolute -inset-4 bg-primary-fixed blur-2xl opacity-40 rounded-full"></div>
+<img class="w-32 h-32 object-contain relative z-10" data-alt="Lumi, a magical and friendly AI companion character that looks like a glowing, soft blue nebula cloud with large, expressive eyes and a tiny, floating star on its head. Lumi is smiling warmly and waving, floating mid-air with a subtle stardust trail. The character has a gentle 3D tactile feel, similar to high-end educational animation styles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHLtXcs66-7A8ZwNFv2d2jzWnzOhbfUVm8tSsKi-lq3b0iZBqdudcuQP4jDnz0pl_9cK5uHOxVssFcoRjKx0ge9P9vKH5SBnT3tgrDyRvMt-kd41MC5ohWul40lfhdk60YCxSnpymibAYXpsZnTMx3RyZWmoMBRi5cg4zbX9bcbWp-ft6rSIKB4k64R8YZCFZDxO1Q-B1GEXlEeQ81K249-t5PD325GvRL3z3kwn2kjxQxCCQchCM7BrpOUqx78PR_hgS42dS_"/>
+</div>
+<div class="relative">
+<div class="bg-surface-container-lowest border-2 border-primary-fixed-dim rounded-xl px-md py-sm shadow-lg max-w-[200px] relative after:content-[''] after:absolute after:left-0 after:top-1/2 after:-translate-x-full after:-translate-y-1/2 after:border-y-[10px] after:border-y-transparent after:border-r-[15px] after:border-r-surface-container-lowest">
+<p class="font-body-md text-on-surface leading-tight">What will you pick today?</p>
+</div>
+</div>
+</div>
+<!-- Prominent Star Balance Card -->
+<div class="glass-card border-2 border-primary-container rounded-lg p-md flex flex-col items-center justify-center min-w-[180px] shadow-xl star-pulse">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-xs">YOUR STARS</span>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-4xl text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-headline-xl font-headline-xl text-primary">1,250</span>
+</div>
+</div>
+</section>
+<!-- Category Filter Chips -->
+<section class="mb-lg overflow-x-auto hide-scrollbar -mx-margin-mobile px-margin-mobile">
+<div class="flex gap-md pb-xs">
+<button class="bg-primary-container text-on-primary-container px-lg py-sm rounded-full font-interactive-text whitespace-nowrap shadow-md hover:scale-105 transition-transform active:scale-95">All Items</button>
+<button class="bg-surface-container-high text-on-surface-variant px-lg py-sm rounded-full font-interactive-text whitespace-nowrap hover:bg-primary-fixed/30 transition-all">Outfits</button>
+<button class="bg-surface-container-high text-on-surface-variant px-lg py-sm rounded-full font-interactive-text whitespace-nowrap hover:bg-primary-fixed/30 transition-all">World Decor</button>
+<button class="bg-surface-container-high text-on-surface-variant px-lg py-sm rounded-full font-interactive-text whitespace-nowrap hover:bg-primary-fixed/30 transition-all">Pet Pals</button>
+</div>
+</section>
+<!-- Rewards Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Item Card 1: Outfits -->
+<div class="glass-card rounded-lg p-md flex flex-col gap-md shadow-lg border-b-4 border-primary-fixed group cursor-pointer hover:shadow-2xl transition-all">
+<div class="relative bg-surface-container rounded-md h-48 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A magical adventurer's outfit for a child avatar, featuring a bright orange cape with gold star embroidery and a matching wooden staff. The style is soft, tactile, and cartoonish, set in a brightly lit studio environment with soft shadows and a warm, glowing amber light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUayCUibaFa9QBSv8Dgae9DADxngrjhg1LXxtFVGyqP1PtBjCohhO7tN33ExharrgmnG5WuKHs8zbD52RLv1BuhsffilZXgwxUg7qh2Dsc3Qn1QbeMH2lbMejLr8fMaE69k_51K_jpRmm_J9irE2-6O9iv4Io18H8BR_RO0G10jiNHMXvOw9hsa5M3kHf-SLWbqfViytDm5sdyZ6t-HauGbF7qeawutbcU7Hqr_0pQDFjg9ikNJOJZtWVf26IijhbMnFGdUjLk"/>
+<div class="absolute top-sm left-sm bg-secondary-container text-on-secondary-container text-xs font-bold px-sm py-xs rounded-full uppercase tracking-widest">Outfit</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg-mobile text-on-surface">Star Voyager Cape</h3>
+<p class="font-body-md text-on-surface-variant">Look magical in every story!</p>
+</div>
+<div class="bg-primary-container text-on-primary-container rounded-lg px-md py-sm font-interactive-text flex items-center gap-xs">
+                        50 <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+</div>
+</div>
+<!-- Item Card 2: Pet Pals -->
+<div class="glass-card rounded-lg p-md flex flex-col gap-md shadow-lg border-b-4 border-tertiary-fixed group cursor-pointer hover:shadow-2xl transition-all">
+<div class="relative bg-surface-container rounded-md h-48 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A tiny, fluffy baby phoenix bird with shimmering gold and red feathers, sitting on a small cloud. The creature is adorable with big sparkling eyes, designed in a soft, squishy toy aesthetic. Bright, high-key lighting with glowing magical particles surrounding the pet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAb1ED4vmI2N24zo32RDA7KDdSQyUkUEEvEp3Fb7dh-FiNKTfBmxiW1nJObYhpP3TE_hjrhqKguMkt4c6909TQwNuqFsF7M3eeeW5YU658l0Q9j5ehAZbVTkPeb_-P-X1MbNoUyeeijYx3xNaPMdLl9AY55MB63SrkdgWB0KiAiRqPENxiaW1mOp_UG7KEjbBl-dk4sxfHowaB9NoUGvMvLbYWsKR_rx8ZCbMilE0OgjdMxvnCCfs0M9jb7DlY4gIEbae2blgL"/>
+<div class="absolute top-sm left-sm bg-tertiary-container text-on-tertiary-container text-xs font-bold px-sm py-xs rounded-full uppercase tracking-widest">Pet Pal</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg-mobile text-on-surface">Pip the Phoenix</h3>
+<p class="font-body-md text-on-surface-variant">A warm friend for your travels.</p>
+</div>
+<div class="bg-primary-container text-on-primary-container rounded-lg px-md py-sm font-interactive-text flex items-center gap-xs">
+                        120 <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+</div>
+</div>
+<!-- Item Card 3: Decor -->
+<div class="glass-card rounded-lg p-md flex flex-col gap-md shadow-lg border-b-4 border-secondary-fixed group cursor-pointer hover:shadow-2xl transition-all">
+<div class="relative bg-surface-container rounded-md h-48 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A glowing crystalline tree with translucent purple leaves that pulse with light, sitting in a whimsical porcelain pot. The tree looks like it belongs in a dream world, with a soft matte finish and gentle bioluminescence. Modern, clean 3D render style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRLTY91tsM0fc27h7H4PPYasqdfFlJa7eKlT-MC2MiI9U7yegReL9D7-H-MFcPSoYbLUbmJYJqTD5-Idf4J4kwoGbVYEYUhc4OpOajvWTsCQ8vnsWfKgXDNtypxWI-cEkPKrwqEQ-gYDET3JaLgBOJTH9jfO7RgqoT5qiQaHgA8s8u4j-2Us-PX3yhAAU0NNHuepudSnB5dkwQPSGfzLyZgvq7ZOVpA81uZhXOKTFA2znW7tfjxhNSyl-Hi79tOsjPpWETtQTe"/>
+<div class="absolute top-sm left-sm bg-secondary-container text-on-secondary-container text-xs font-bold px-sm py-xs rounded-full uppercase tracking-widest">Decor</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg-mobile text-on-surface">Dreamlight Tree</h3>
+<p class="font-body-md text-on-surface-variant">Make your world glow at night.</p>
+</div>
+<div class="bg-primary-container text-on-primary-container rounded-lg px-md py-sm font-interactive-text flex items-center gap-xs">
+                        75 <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+</div>
+</div>
+<!-- Item Card 4: Outfit -->
+<div class="glass-card rounded-lg p-md flex flex-col gap-md shadow-lg border-b-4 border-primary-fixed group cursor-pointer hover:shadow-2xl transition-all">
+<div class="relative bg-surface-container rounded-md h-48 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A pair of shiny silver astronaut boots for a child, with glowing neon blue details and soft padded textures. The boots look lightweight and futuristic but friendly, rendered with high-quality PBR materials in a soft-lit environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Rzv0fwPD5PBNzPsqWinEJU75M988EbadYHE0sCGOd6s7JhQreC6Jg2uVFN_YU_YSaGd8354TC2hZfKhnYleVkWKAiJZjbxXGNF9WmcRx7eElQ6nxwWxvjKn9NP5Ilmu829ANz6hiAr0ejQn9S544Dm9win78V7nvLOyIe4GZOnushZtGDFcABXl0eNA95ittMsB50jQWd3jDyetTh4qNKfaimeaZWH6HvyZuATRHSNkj6hS1gB-haxhczB0fZ0Yw6HfpWg1z"/>
+<div class="absolute top-sm left-sm bg-secondary-container text-on-secondary-container text-xs font-bold px-sm py-xs rounded-full uppercase tracking-widest">Outfit</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg-mobile text-on-surface">Moon Jumpers</h3>
+<p class="font-body-md text-on-surface-variant">Bouncy boots for space walks!</p>
+</div>
+<div class="bg-primary-container text-on-primary-container rounded-lg px-md py-sm font-interactive-text flex items-center gap-xs">
+                        90 <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+</div>
+</div>
+<!-- Locked Item Example -->
+<div class="glass-card rounded-lg p-md flex flex-col gap-md shadow-lg border-b-4 border-outline-variant grayscale opacity-75 relative group">
+<div class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-surface/40 backdrop-blur-[2px] rounded-lg">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant">lock</span>
+<p class="font-label-caps text-label-caps mt-xs">LOCKED</p>
+</div>
+<div class="relative bg-surface-container rounded-md h-48"></div>
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg-mobile text-on-surface">Mystery Dragon</h3>
+<p class="font-body-md text-on-surface-variant">Reach Level 10 to unlock!</p>
+</div>
+<div class="bg-surface-container-highest text-on-surface-variant rounded-lg px-md py-sm font-interactive-text flex items-center gap-xs">
+                        ??? <span class="material-symbols-outlined text-lg">stars</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Extra Spacing for FAB -->
+<div class="h-12"></div>
+</main>
+<!-- Floating Action Button: Go Explore -->
+<button class="fixed bottom-28 right-margin-mobile z-40 bg-secondary-container text-on-secondary-container p-md rounded-full shadow-2xl flex items-center gap-sm hover:scale-110 active:scale-95 transition-all group">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-12 transition-transform">auto_awesome</span>
+<span class="font-interactive-text pr-xs">Earn More Stars</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 pb-safe h-24 bg-surface-container-low dark:bg-surface-container-lowest shadow-[0_-4px_20px_rgba(107,61,202,0.1)] rounded-t-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-secondary-fixed-dim/20 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-secondary-fixed-dim/20 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+<span class="font-label-caps text-label-caps">Speak</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-secondary-fixed-dim/20 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-caps text-label-caps">Read</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-secondary-fixed-dim/20 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-caps text-label-caps">Stories</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-2 shadow-lg scale-110 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="public" style="font-variation-settings: 'FILL' 1;">public</span>
+<span class="font-label-caps text-label-caps">World</span>
+</a>
+</nav>
+<script>
+        // Simple click interaction for the cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('click', () => {
+                if (!card.querySelector('.absolute.inset-0.z-20')) { // if not locked
+                    const itemName = card.querySelector('h3').innerText;
+                    
+                    // Create a burst effect
+                    const burst = document.createElement('div');
+                    burst.className = 'fixed pointer-events-none z-[100] text-primary-container animate-ping';
+                    burst.innerHTML = '<span class="material-symbols-outlined text-6xl">grade</span>';
+                    burst.style.left = (event.clientX - 30) + 'px';
+                    burst.style.top = (event.clientY - 30) + 'px';
+                    document.body.appendChild(burst);
+                    
+                    setTimeout(() => burst.remove(), 500);
+
+                    console.log(`User selected: ${itemName}`);
+                }
+            });
+        });
+    </script>
+</body></html>

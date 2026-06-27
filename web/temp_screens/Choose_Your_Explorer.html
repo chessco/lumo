@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumo - Who's Learning Today?</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        
+        .floating-star {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .avatar-glow:hover {
+            box-shadow: 0 0 30px 10px rgba(255, 184, 77, 0.4);
+        }
+
+        .squishy-button:active {
+            transform: scale(0.92);
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .lumo-bg-gradient {
+            background: radial-gradient(circle at top left, #fff8f4 0%, #fef1e5 50%, #e9ddff 100%);
+        }
+    </style>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e9ddff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#f3e6da",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f9ecdf",
+                    "primary-fixed-dim": "#ffb951",
+                    "surface-bright": "#fff8f4",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#ffb84d",
+                    "inverse-surface": "#362f27",
+                    "secondary": "#6b3dca",
+                    "inverse-on-surface": "#fcefe2",
+                    "surface": "#fff8f4",
+                    "tertiary-fixed": "#4dffb8",
+                    "on-primary-container": "#714a00",
+                    "secondary-fixed-dim": "#d1bcff",
+                    "inverse-primary": "#ffb951",
+                    "error": "#ba1a1a",
+                    "on-background": "#201b13",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#5520b3",
+                    "surface-tint": "#825500",
+                    "on-surface-variant": "#514536",
+                    "on-error": "#ffffff",
+                    "tertiary": "#006c49",
+                    "surface-dim": "#e4d8cc",
+                    "primary-fixed": "#ffddb3",
+                    "surface-variant": "#ede0d4",
+                    "on-surface": "#201b13",
+                    "surface-container-highest": "#ede0d4",
+                    "outline": "#837563",
+                    "tertiary-fixed-dim": "#16e19d",
+                    "tertiary-container": "#11e09c",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#d6c4b0",
+                    "primary": "#825500",
+                    "on-tertiary-fixed": "#002113",
+                    "on-secondary-fixed": "#23005b",
+                    "surface-container-low": "#fef1e5",
+                    "background": "#fff8f4",
+                    "on-primary-fixed-variant": "#633f00",
+                    "on-secondary-container": "#fffbff",
+                    "on-tertiary-container": "#005e3f",
+                    "secondary-container": "#8458e4",
+                    "on-primary-fixed": "#291800",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "40px",
+                    "md": "24px",
+                    "gutter": "20px",
+                    "xs": "4px",
+                    "margin-mobile": "24px",
+                    "margin-desktop": "80px",
+                    "xl": "64px",
+                    "base": "8px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Quicksand"],
+                    "headline-lg-mobile": ["Quicksand"],
+                    "headline-lg": ["Quicksand"],
+                    "body-md": ["Quicksand"],
+                    "body-lg": ["Quicksand"],
+                    "headline-xl": ["Quicksand"],
+                    "interactive-text": ["Quicksand"]
+            },
+            "fontSize": {
+                    "label-caps": ["16px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-lg": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "interactive-text": ["22px", {"lineHeight": "24px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-lg min-h-screen relative overflow-hidden lumo-bg-gradient">
+<!-- Atmospheric Floating Stars (JS Generated for randomness) -->
+<div class="absolute inset-0 pointer-events-none" id="star-field"></div>
+<!-- Top AppBar (Brand Identity) -->
+<header class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-24 w-full z-50">
+<div class="flex items-center gap-sm">
+<span class="text-primary font-headline-xl tracking-tight">Lumo</span>
+</div>
+<div class="flex gap-md items-center">
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all squishy-button">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content: Profile Selector Canvas -->
+<main class="flex flex-col items-center justify-center min-h-[calc(100vh-6rem)] px-margin-mobile relative z-10 pb-xl">
+<div class="text-center mb-xl">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-primary mb-xs">Who's learning today?</h1>
+<p class="font-body-md text-on-surface-variant max-w-md mx-auto">Pick your explorer's profile to start the adventure.</p>
+</div>
+<!-- Profiles Bento/Grid Layout -->
+<div class="flex flex-wrap justify-center gap-lg md:gap-xl w-full max-w-5xl">
+<!-- Child 1: Leo -->
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="relative">
+<div class="w-40 h-40 md:w-56 md:h-56 rounded-full border-[8px] border-surface-container-highest bg-surface-container shadow-lg avatar-glow transition-all duration-300 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A friendly 3D cartoon avatar of a young boy named Leo with messy brown hair and bright green eyes, wearing a yellow explorer vest. The illustration is in a soft, magical 3D rendered style similar to modern high-end animated films, set against a soft bokeh background of a magical forest. The lighting is warm and sunny, conveying safety and wonder." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCyjeRmDZdD5TK7bwPUBZTvvW5dcotvliy1-FBYTbr8Kcf_KL77ks8FGyW5_0V9NMDUNBMRim9qHFvEGqE4cnUY7hQsP8D-w6Sw7paqcyoAjWpUPNmI8qxhj4-i9QEebmQowEZ5ZQypX4bM4OoOk7Qn8mARDReak03rfRmjPFouM0Lc4XNdV7wRbq_2inqyn-D5KxvOQ9GR71kUUHa57h7LMwd4hAkxgUiUWx8gbzW3KKPcSSlBZqiQFITgy28w-67j9OWnD19"/>
+</div>
+<div class="absolute -top-2 -right-2 bg-tertiary text-on-tertiary rounded-full px-3 py-1 font-label-caps text-sm shadow-md">LVL 4</div>
+</div>
+<span class="mt-md font-headline-lg-mobile md:font-headline-lg text-on-surface group-hover:text-primary transition-colors">Leo</span>
+</div>
+<!-- Child 2: Mia -->
+<div class="flex flex-col items-center group cursor-pointer">
+<div class="relative">
+<div class="w-40 h-40 md:w-56 md:h-56 rounded-full border-[8px] border-surface-container-highest bg-surface-container shadow-lg avatar-glow transition-all duration-300 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A charming 3D cartoon avatar of a young girl named Mia with braided purple hair and curious large eyes, wearing a telescope around her neck. The visual style is premium and tactile, with soft textures and glowing elements. The background is a dreamy sunset gradient with floating magical dust, matching the Lumo brand aesthetic. The mood is adventurous and nurturing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSuNP2sXpWx8OrdaD_EFwF9hV7ZHuiij8thGdHMFTrIPlcElbZT3XirkIq4dRKpR7SST-NM-5B7bGwXGCqV3mSS0qfSfUbu8U53csokF1XOfgCos1h6lHCxGU3P-yE-YiL4TGWr8zi3l3-ryNr4pJOoP-zG9ca_rMFCPM9NCX2PFqxk0ZBu2kr1RnnE6wPmE950VwC_CKmwhrWKt1bcdQOEp9X_RUaHIRSqfXK88T4N9kCaG-gtQgMvWQ_A54azUsPXreu50MT"/>
+</div>
+<div class="absolute -top-2 -right-2 bg-tertiary text-on-tertiary rounded-full px-3 py-1 font-label-caps text-sm shadow-md">LVL 7</div>
+</div>
+<span class="mt-md font-headline-lg-mobile md:font-headline-lg text-on-surface group-hover:text-primary transition-colors">Mia</span>
+</div>
+<!-- Add New Explorer Button -->
+<div class="flex flex-col items-center group cursor-pointer">
+<button class="w-40 h-40 md:w-56 md:h-56 rounded-full border-[8px] border-dashed border-outline-variant bg-surface-bright flex flex-col items-center justify-center hover:bg-white hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md squishy-button">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform mb-sm">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'wght' 700;">add</span>
+</div>
+</button>
+<span class="mt-md font-headline-lg-mobile md:font-headline-lg text-on-surface-variant group-hover:text-primary transition-colors text-center leading-tight">Add a New<br/>Explorer</span>
+</div>
+</div>
+<!-- Secondary CTA: Parent Mode -->
+<div class="mt-xl">
+<button class="flex items-center gap-sm px-xl py-md bg-secondary text-on-secondary rounded-full font-interactive-text shadow-[0_8px_0_0_#5520b3] active:shadow-none active:translate-y-2 transition-all squishy-button">
+<span class="material-symbols-outlined" data-icon="lock" data-weight="fill">lock</span>
+                Parent Dashboard
+            </button>
+</div>
+</main>
+<!-- Navigation suppressed per Destination Rule (this is a linear profile selection screen) -->
+<!-- Micro-interaction Scripts -->
+<script>
+        // Generate floating stars
+        const starField = document.getElementById('star-field');
+        const starIcons = ['star', 'sparkles', 'circle'];
+        
+        for (let i = 0; i < 20; i++) {
+            const star = document.createElement('span');
+            const icon = starIcons[Math.floor(Math.random() * starIcons.length)];
+            star.className = 'material-symbols-outlined absolute floating-star text-primary/10';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            star.style.animationDelay = (Math.random() * 5) + 's';
+            star.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            star.innerHTML = icon;
+            if (Math.random() > 0.5) star.style.fontVariationSettings = "'FILL' 1";
+            starField.appendChild(star);
+        }
+
+        // Add hover sounds / haptics feedback simulation
+        document.querySelectorAll('.squishy-button, .avatar-glow').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                // Potential sound effect trigger
+            });
+            el.addEventListener('mousedown', () => {
+                // Subtle scale effect is handled by CSS
+            });
+        });
+    </script>
+</body></html>

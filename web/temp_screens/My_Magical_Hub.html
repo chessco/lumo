@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumo Child Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fff8f4",
+                    "outline-variant": "#d6c4b0",
+                    "outline": "#837563",
+                    "secondary-fixed": "#e9ddff",
+                    "primary-fixed-dim": "#ffb951",
+                    "tertiary-fixed-dim": "#16e19d",
+                    "tertiary": "#006c49",
+                    "primary-fixed": "#ffddb3",
+                    "inverse-on-surface": "#fcefe2",
+                    "secondary": "#6b3dca",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-variant": "#ede0d4",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#11e09c",
+                    "on-secondary-fixed-variant": "#5520b3",
+                    "surface-container-high": "#f3e6da",
+                    "surface-bright": "#fff8f4",
+                    "surface-tint": "#825500",
+                    "tertiary-fixed": "#4dffb8",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#201b13",
+                    "secondary-container": "#8458e4",
+                    "surface-container-low": "#fef1e5",
+                    "surface-dim": "#e4d8cc",
+                    "inverse-primary": "#ffb951",
+                    "primary": "#825500",
+                    "inverse-surface": "#362f27",
+                    "on-tertiary-container": "#005e3f",
+                    "on-secondary-container": "#fffbff",
+                    "primary-container": "#ffb84d",
+                    "background": "#fff8f4",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#f9ecdf",
+                    "surface-container-highest": "#ede0d4",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#23005b",
+                    "on-surface-variant": "#514536",
+                    "on-primary-container": "#714a00",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#d1bcff",
+                    "on-background": "#201b13",
+                    "on-primary-fixed": "#291800",
+                    "on-primary-fixed-variant": "#633f00",
+                    "on-tertiary-fixed": "#002113",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "xl": "64px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "gutter": "20px",
+                    "lg": "40px",
+                    "margin-desktop": "80px",
+                    "sm": "12px",
+                    "margin-mobile": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Quicksand"],
+                    "label-caps": ["Quicksand"],
+                    "headline-lg": ["Quicksand"],
+                    "headline-lg-mobile": ["Quicksand"],
+                    "body-md": ["Quicksand"],
+                    "interactive-text": ["Quicksand"],
+                    "headline-xl": ["Quicksand"]
+            },
+            "fontSize": {
+                    "body-lg": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "label-caps": ["16px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "interactive-text": ["22px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Quicksand', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .squishy-btn {
+            box-shadow: 0 4px 0px #E6A645;
+            transition: all 0.1s ease;
+        }
+        .squishy-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0px #E6A645;
+        }
+        .magical-glow {
+            filter: drop-shadow(0 0 15px rgba(255, 185, 81, 0.6));
+        }
+        .speech-bubble-tail::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 40px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: #ffffff transparent;
+            display: block;
+            width: 0;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .stardust-track { background: rgba(130, 85, 0, 0.1); }
+        .stardust-fill { background: linear-gradient(90deg, #ffb84d, #ffddb3); position: relative; overflow: hidden; }
+        .stardust-fill::after {
+            content: ''; position: absolute; top: 0; right: 0; width: 10px; height: 100%;
+            box-shadow: 0 0 15px #fff; background: white; border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface overflow-x-hidden min-h-screen">
+<!-- Magical Background Layer -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-[#1a1a2e] via-[#4a4e69] to-[#957DAD] opacity-30"></div>
+<!-- Simple Rolling Hill Shapes via CSS -->
+<div class="absolute bottom-0 w-[120%] h-[30%] bg-[#b8d8ba] -left-10 rounded-[100%] opacity-40 blur-2xl"></div>
+<div class="absolute bottom-0 w-[130%] h-[25%] bg-[#a2d2ff] -right-10 rounded-[100%] opacity-30 blur-3xl"></div>
+</div>
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center px-margin-mobile py-sm w-full z-40 bg-transparent sticky top-0 md:px-margin-desktop">
+<div class="flex items-center gap-base">
+<div class="w-12 h-12 rounded-full border-2 border-primary overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A cute, 3D rendered avatar of a happy child with big sparkling eyes and a colorful beanie, set against a soft bokeh playground background. The style is soft, tactile, and high-end 3D animation, similar to modern family film characters, with a palette of warm oranges and gentle purples." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuvPo7LMMF3ih1CAsRCZdGg8EsPK2IuUiwq9Jz0ILd4eiTfORHpOMrNKfCvliHjy-rzTLhcQnQP06WWhU6wugWVA1TfO7183vu9W9piTEz8IeNUXqTZew1c1Hiwc3ZcqC9G1erk0WRqEi9_KXSDsEChBb-tZrMIf9GxTW1qBAUYLqbxt8ooEU959M-Ra1PFRUYCt95Tsxzw96rE20bqgvS_99acO-TdHvsEpRMJqE5rFyuEZbmBYhNQKGMYqdImMaf3fsTvox5"/>
+</div>
+<div class="flex flex-col">
+<span class="text-label-caps font-label-caps text-primary">Alex</span>
+<span class="text-[14px] font-bold text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="grade" style="font-variation-settings: 'FILL' 1;">grade</span>
+                    1,250 Stars
+                </span>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="bg-surface-container-highest px-4 py-1.5 rounded-full flex items-center gap-1 shadow-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-bold text-on-surface">5</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:scale-105 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-on-primary" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<main class="relative z-10 px-margin-mobile pb-32 pt-4 max-w-7xl mx-auto lg:px-margin-desktop">
+<!-- Welcome Section with Lumi -->
+<section class="flex flex-col md:flex-row items-center gap-md mb-xl mt-4">
+<div class="relative w-40 h-40 md:w-56 md:h-56 animate-float">
+<div class="absolute inset-0 bg-primary-container/30 rounded-full blur-3xl magical-glow"></div>
+<img class="w-full h-full object-contain relative z-10" data-alt="A small, friendly star-shaped character named Lumi with a glowing soft yellow body and expressive large blue eyes. Lumi is waving a little hand, floating in mid-air. The style is professional digital illustration, with soft textures, gentle gradients, and a nurturing, whimsical feel that is perfect for a children's educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcvEQJOKlCAf3Ainv9ADb_YASU8yJHrgK72eetHOyRTh1LZaZVFLlOu0XXR83QI7eqFDIuKjUsB8lwWkqnob653SQ6uikoNEKZTq2ggL9_mYObvpD3wC7jIVlimij2Fj2Lnf9s1PC5rJbZZ8kk4RtXD4K7obKU1DTh0KqRTGhSklzfSug8Vy4b5NXy7EVtCDgdo38SAKvY5cowwP79j3o6U45ZVtY3nfr0oboZI4waKR3pep59hRiyPvO2sSbMQizUNpRCN7IS"/>
+</div>
+<div class="relative bg-surface-container-lowest p-6 rounded-xl shadow-lg speech-bubble-tail md:ml-4 max-w-sm border border-outline-variant/20">
+<p class="font-body-lg text-body-lg text-on-surface">Hi Alex! Ready for a new story adventure today?</p>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Daily Mission Card (Bento Style) -->
+<div class="lg:col-span-1 bg-surface-container-low p-8 rounded-lg shadow-sm border border-outline-variant/30 relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-6">
+<div class="flex flex-col">
+<span class="text-label-caps font-label-caps text-secondary mb-2">DAILY MISSION</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Star Catcher</h2>
+</div>
+<div class="w-14 h-14 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container shadow-inner">
+<span class="material-symbols-outlined text-[32px]" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6">Earn 50 stars by reading one story to Lumi!</p>
+<div class="space-y-2 mb-8">
+<div class="flex justify-between text-label-caps font-label-caps text-outline">
+<span>Progress</span>
+<span>15 / 50</span>
+</div>
+<div class="w-full h-6 stardust-track rounded-full">
+<div class="h-full stardust-fill rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary-container" data-icon="grade">grade</span></div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center opacity-30"><span class="material-symbols-outlined text-on-primary-container" data-icon="grade">grade</span></div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center opacity-30"><span class="material-symbols-outlined text-on-primary-container" data-icon="grade">grade</span></div>
+</div>
+</div>
+<!-- Recommended Activity Card (Bento Style) -->
+<div class="lg:col-span-2 bg-primary-container/10 p-8 rounded-lg border-4 border-dashed border-primary-container flex flex-col md:flex-row gap-lg items-center relative overflow-hidden">
+<div class="flex-1">
+<span class="inline-block bg-primary text-on-primary text-label-caps font-label-caps px-4 py-1 rounded-full mb-4">RECOMENDED</span>
+<h2 class="text-headline-xl font-headline-xl text-on-surface mb-2">The Brave Little Toaster</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mb-8">A speaking exercise: Help Lumi pronounce tricky words as we explore the kitchen kingdom!</p>
+<button class="squishy-btn bg-primary text-on-primary font-interactive-text text-interactive-text px-8 py-4 rounded-xl flex items-center gap-2">
+                        Start Reading
+                        <span class="material-symbols-outlined" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="w-full md:w-64 h-64 rounded-lg overflow-hidden shadow-xl transform rotate-3 hover:rotate-0 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A whimsical digital painting of a cute 1950s style toaster with happy eyes and a smile, exploring a kitchen that looks like a majestic mountain range made of fruit and appliances. Warm morning sun streams through the window. The aesthetic is tactile, textured, and colorful, like a high-quality contemporary children's book illustration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW5-FbxzN0y9YxvNbqXhhWTgRJLCPK1UBLGWPONf2xdCYmgL71yRmxJzxe9FqhVkamryruzZwuf1v5AMcc8CAEYUDlbgIVFjqNF_8GMvzUBD02EmEymv2m611vUubSwbnXkC2W1YjKTuuQULceRDe_iU3MInWEQNs6GNhmUo7wkn7N16qCOkO3l2ZFCE92UQFTd3-Ciw5aRnOydOAKBlwHZ67f4-hFKnNNMAr0ENjuUS0-nHto30NcjpO4uUXAHB7Ubo8hjV7B"/>
+</div>
+</div>
+<!-- Quick Access Grid -->
+<div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-md mt-4">
+<!-- Lumo Speak -->
+<div class="bg-surface-container flex flex-col items-center justify-center p-6 rounded-lg hover:bg-surface-bright transition-all cursor-pointer group hover:-translate-y-2 border-b-4 border-transparent hover:border-secondary">
+<div class="w-20 h-20 rounded-2xl bg-secondary-fixed flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[48px] text-secondary" data-icon="mic" style="font-variation-settings: 'FILL' 0;">mic</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface">Lumo Speak</span>
+</div>
+<!-- Lumo Read -->
+<div class="bg-surface-container flex flex-col items-center justify-center p-6 rounded-lg hover:bg-surface-bright transition-all cursor-pointer group hover:-translate-y-2 border-b-4 border-transparent hover:border-primary">
+<div class="w-20 h-20 rounded-2xl bg-primary-fixed flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[48px] text-primary" data-icon="auto_stories" style="font-variation-settings: 'FILL' 0;">auto_stories</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface">Lumo Read</span>
+</div>
+<!-- Lumo Languages -->
+<div class="bg-surface-container flex flex-col items-center justify-center p-6 rounded-lg hover:bg-surface-bright transition-all cursor-pointer group hover:-translate-y-2 border-b-4 border-transparent hover:border-tertiary">
+<div class="w-20 h-20 rounded-2xl bg-tertiary-fixed flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[48px] text-tertiary" data-icon="public" style="font-variation-settings: 'FILL' 0;">public</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface">Lumo Languages</span>
+</div>
+<!-- Lumo Stories -->
+<div class="bg-surface-container flex flex-col items-center justify-center p-6 rounded-lg hover:bg-surface-bright transition-all cursor-pointer group hover:-translate-y-2 border-b-4 border-transparent hover:border-secondary">
+<div class="w-20 h-20 rounded-2xl bg-secondary-container flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[48px] text-on-secondary-container" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface">Lumo Stories</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile and Tablet focus) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end pb-safe px-4 h-24 bg-surface-container dark:bg-surface-container-highest rounded-t-xl shadow-[0_-4px_20px_rgba(130,85,0,0.1)]">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-3 mb-2 transform -translate-y-2 border-b-4 border-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-caps font-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+<span class="text-label-caps font-label-caps">Speak</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="text-label-caps font-label-caps">Read</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-label-caps font-label-caps">Stories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="public">public</span>
+<span class="text-label-caps font-label-caps">World</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction: Particle Effect on Button Click
+        document.querySelectorAll('.squishy-btn').forEach(btn => {
+            btn.addEventListener('mousedown', function(e) {
+                for (let i = 0; i < 8; i++) {
+                    createParticle(e.clientX, e.clientY);
+                }
+            });
+        });
+
+        function createParticle(x, y) {
+            const p = document.createElement('div');
+            p.className = 'fixed pointer-events-none z-[100] text-primary';
+            p.innerHTML = '<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: \'FILL\' 1;">grade</span>';
+            p.style.left = x + 'px';
+            p.style.top = y + 'px';
+            document.body.appendChild(p);
+
+            const destX = x + (Math.random() - 0.5) * 100;
+            const destY = y + (Math.random() - 0.5) * 100;
+            
+            p.animate([
+                { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                { transform: `translate(${destX - x}px, ${destY - y}px) scale(0)`, opacity: 0 }
+            ], {
+                duration: 600,
+                easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)'
+            }).onfinish = () => p.remove();
+        }
+    </script>
+</body></html>

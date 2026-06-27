@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Lumo - Vocabulary Flashcards</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .card-inner {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .card-flip {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        .stardust-particle {
+            position: absolute;
+            pointer-events: none;
+            background: radial-gradient(circle, #fff, transparent);
+            border-radius: 50%;
+            animation: float 2s ease-out forwards;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-50px) scale(0); opacity: 0; }
+        }
+        .squishy-press:active {
+            transform: scale(0.92);
+        }
+        .glow-pulse {
+            animation: glow 2s infinite ease-in-out;
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(132, 88, 228, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(132, 88, 228, 0.6); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e9ddff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#f3e6da",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f9ecdf",
+                        "primary-fixed-dim": "#ffb951",
+                        "surface-bright": "#fff8f4",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#ffb84d",
+                        "inverse-surface": "#362f27",
+                        "secondary": "#6b3dca",
+                        "inverse-on-surface": "#fcefe2",
+                        "surface": "#fff8f4",
+                        "tertiary-fixed": "#4dffb8",
+                        "on-primary-container": "#714a00",
+                        "secondary-fixed-dim": "#d1bcff",
+                        "inverse-primary": "#ffb951",
+                        "error": "#ba1a1a",
+                        "on-background": "#201b13",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#5520b3",
+                        "surface-tint": "#825500",
+                        "on-surface-variant": "#514536",
+                        "on-error": "#ffffff",
+                        "tertiary": "#006c49",
+                        "surface-dim": "#e4d8cc",
+                        "primary-fixed": "#ffddb3",
+                        "surface-variant": "#ede0d4",
+                        "on-surface": "#201b13",
+                        "surface-container-highest": "#ede0d4",
+                        "outline": "#837563",
+                        "tertiary-fixed-dim": "#16e19d",
+                        "tertiary-container": "#11e09c",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#d6c4b0",
+                        "primary": "#825500",
+                        "on-tertiary-fixed": "#002113",
+                        "on-secondary-fixed": "#23005b",
+                        "surface-container-low": "#fef1e5",
+                        "background": "#fff8f4",
+                        "on-primary-fixed-variant": "#633f00",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary-container": "#005e3f",
+                        "secondary-container": "#8458e4",
+                        "on-primary-fixed": "#291800",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "md": "24px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px",
+                        "xl": "64px",
+                        "base": "8px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "headline-lg": ["Quicksand"],
+                        "body-md": ["Quicksand"],
+                        "body-lg": ["Quicksand"],
+                        "headline-xl": ["Quicksand"],
+                        "interactive-text": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["16px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-lg": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "interactive-text": ["22px", {"lineHeight": "24px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim shadow-[0_8px_0_0_rgba(130,85,0,0.1)] flex justify-between items-center px-margin-mobile h-20 w-full z-50 fixed top-0 left-0">
+<div class="flex items-center gap-sm">
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-primary dark:text-primary-fixed-dim">Lumo</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="hover:scale-105 transition-transform active:translate-y-1 transition-all duration-100 text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="stars">stars</span>
+</button>
+<button class="hover:scale-105 transition-transform active:translate-y-1 transition-all duration-100 text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A cute, 3D-rendered child avatar with bright eyes and a friendly smile, styled in a soft claymorphic aesthetic with warm lighting. The character is wearing a small orange explorer hat, set against a soft pastel blue background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhXTCBv1o7zeKsHse_q1IIBFq9cd6JJQu0quOU6hIA8P5ZuWCToNlzVfh58ZDKT0K0ChUVkQIx-xFxIKSgjuJNXIn-U9OiOiAFOFD_wCBH-S70OWIRaNfZZUTn1SmQgUyVnEBwQfVHP9AnCGh30G87z4FI15cCxx6xapwaRpfsLLf_s8LsnBTQFbZUumowtQU5Z0erNWe2yK3tRcjut4qs5SFWjF3lTyJCpT_QqEHybtfyrLjs8So3IXpRWFVmt7aM2Dp7LtpK"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 mt-20 mb-24 p-margin-mobile flex flex-col items-center gap-lg">
+<!-- Progress Bar (The Milky Way) -->
+<div class="w-full max-w-md flex flex-col gap-xs mt-sm">
+<div class="flex justify-between items-end px-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant">3 of 10 Words</span>
+<span class="font-label-caps text-label-caps text-primary">Level 1: Fruits</span>
+</div>
+<div class="h-6 w-full bg-secondary-fixed/30 rounded-full overflow-hidden relative">
+<div class="h-full bg-gradient-to-r from-secondary to-secondary-container rounded-full w-[30%] transition-all duration-700 relative" id="progress-fill">
+<!-- Stardust particles would trail here in JS -->
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full blur-[2px] opacity-80"></div>
+</div>
+</div>
+</div>
+<!-- Flashcard Section -->
+<div class="w-full max-w-sm perspective-1000 group">
+<div class="card-inner relative w-full aspect-[4/5] squishy-press cursor-pointer" id="flashcard">
+<!-- Card Front -->
+<div class="card-face absolute inset-0 bg-white rounded-lg border-b-8 border-surface-container-highest shadow-[0_12px_40px_rgba(130,85,0,0.15)] flex flex-col items-center justify-between p-lg text-center overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
+<div class="w-48 h-48 flex items-center justify-center relative mt-4">
+<!-- Lumi Glow Backdrop -->
+<div class="absolute inset-0 bg-primary-fixed/20 blur-3xl rounded-full scale-150"></div>
+<img class="relative z-10 w-full h-full object-contain drop-shadow-lg" data-alt="A juicy, vibrant red apple with a single green leaf, illustrated in a tactile 3D storybook style. The lighting is warm and sunny, casting soft shadows, making the fruit look plump and delicious. The aesthetic is clean, minimalist, and high-end educational art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjKPnvLn1O4pPt9CDkKIQ0k4lUm7nxOs-SHAD0No6uSljUSKChpmMOhxBw2VBCCQplz9BVKBlNTPyrmXtDfZDywSQhnISQwp2z5_pNrDilI3_mjBo_PsAXojVblfimYKY7dNrq71D2C72_mi0szkJ1qdejuL6HAEsqaZvM-JY3oUCXnQ0RNk2BHT66xfDBp3NE12Z7DSeNE6WAmxfMdoJTYUeL5m42__OxSxN55Z9Dw66pPGQ4nWi2AFk-t8m6cNXo__4jQpt3"/>
+</div>
+<div class="space-y-sm">
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight">Manzana</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Spanish</p>
+</div>
+<button class="group/audio relative w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center shadow-[0_4px_0_#5520b3] active:shadow-none active:translate-y-1 transition-all glow-pulse" onclick="playAudio(event)">
+<span class="material-symbols-outlined text-white text-[32px]" data-icon="volume_up">volume_up</span>
+<!-- Lumi Speech Bubble Hint -->
+<div class="absolute -right-24 top-0 bg-white p-sm rounded-xl border border-secondary-fixed shadow-md opacity-0 group-hover/audio:opacity-100 transition-opacity">
+<span class="font-label-caps text-[12px] text-secondary">Hear Lumi!</span>
+</div>
+</button>
+</div>
+<!-- Card Back (Simulated for depth, but UI focuses on child interaction) -->
+</div>
+</div>
+<!-- Interactive Options Bento -->
+<div class="w-full max-w-md grid grid-cols-3 gap-md">
+<!-- Option 1 -->
+<button class="squishy-press bg-white rounded-lg p-sm border-b-4 border-surface-container-highest shadow-lg flex flex-col items-center gap-xs hover:border-error transition-colors" onclick="handleSelection(this, false)">
+<div class="w-20 h-20 rounded-xl bg-surface-container flex items-center justify-center p-xs">
+<img class="w-full h-full object-contain" data-alt="A bright yellow banana with small brown speckles, illustrated in a friendly 3D cartoon style. The lighting is soft and consistent with the apple illustration, maintaining a premium educational theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcM_iv-Fx9aNQEfjlziY7FJh0S2G29gx5_QmkMGpBIKwRbEH_8LA6bJymDZHHHQlzpMa9XNi85FIr9XOssgi4_afHdIC3aZ5Y_eMo0Ct-jpJiJWyQfA1KXqaYBmRaevuPDPsAo7sMp4zuVD2XYJdYb2AaClTXMYGl9u-e9SVljFX0jnp50HSC8moxFpYeUzPzJMvpgfCn7xEIwCcFwueXoNIGGgdoYJPEBdyukfcT28ONqMbbp73wXmQRktWGMYIbDeqfLIFY0"/>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Plátano</span>
+</button>
+<!-- Option 2 (Correct) -->
+<button class="squishy-press bg-white rounded-lg p-sm border-b-4 border-surface-container-highest shadow-lg flex flex-col items-center gap-xs hover:border-tertiary transition-colors border-2 border-transparent" onclick="handleSelection(this, true)">
+<div class="w-20 h-20 rounded-xl bg-surface-container flex items-center justify-center p-xs">
+<img class="w-full h-full object-contain" data-alt="A large red apple with a glossy skin and a fresh green leaf, perfectly matching the main flashcard image. 3D rendered with a focus on tactile textures and a warm, inviting glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrbkWKCJ7tqbB4RdUvHcYo0wrl_Yl71z6Nx90Myh6O1cn52jeoEkN2rveo-k1va_1qhAP9bloJ16Bgutjrq5Wmq9CqeD9HRFP9muCwyAeH2VH5Z8SDXFkWziP24s90WIFTX5j7nquUTUxOwd7HqIIgE8kcwFEYSNTjfHYjKui2HQJXrGc1kUk0xEaRYlCRvi1OqcBmPQV_IVHtZtyRdfNZlt-nXqQxjg-EicOp6VQg11YodPE3g-hSW-Tps_GzjQXw8igSisJx"/>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Apple</span>
+</button>
+<!-- Option 3 -->
+<button class="squishy-press bg-white rounded-lg p-sm border-b-4 border-surface-container-highest shadow-lg flex flex-col items-center gap-xs hover:border-error transition-colors" onclick="handleSelection(this, false)">
+<div class="w-20 h-20 rounded-xl bg-surface-container flex items-center justify-center p-xs">
+<img class="w-full h-full object-contain" data-alt="A bunch of deep purple grapes with a small green vine, styled in the same 3D claymorphic aesthetic as the other fruits. Soft lighting and high-quality textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNe5x-0wvdeIIO463lhKJPZHZ7wZNVCIgnZx3PuUfoBEyKTlWAepvpve-pVazzb-7TTEIHq6_whDzrfAdCJmQpLBZMy1VLpdx0_SjNSW-n1j68loKGOexPH4q0NgbyOmsJg8R8c2W-i83L-yTUSOSnwtj-mkRDIdJqSkOCiKhzVR0E3mZLWsydJJcjhTqws82UYkOXFmf79Lf3XcVMKIjdVG_s0XGWa0eL7QEo6L4unZk8c6dz79Wl_MtcdnUXToCEok9QluF"/>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Uvas</span>
+</button>
+</div>
+<!-- Feedback Area -->
+<div class="h-8 flex items-center justify-center" id="feedback-text">
+<p class="font-body-md text-body-md text-on-surface-variant italic">Tap the matching fruit!</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 pb-safe h-24 bg-surface-container-low dark:bg-surface-container-lowest shadow-[0_-4px_20px_rgba(107,61,202,0.1)] rounded-t-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+<span class="font-label-caps text-label-caps">Speak</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-2 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-label-caps text-label-caps">Read</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-caps text-label-caps">Stories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-secondary-fixed-dim/20 transition-colors active:scale-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="public">public</span>
+<span class="font-label-caps text-label-caps">World</span>
+</a>
+</nav>
+<script>
+        function playAudio(e) {
+            e.stopPropagation();
+            createStardust(e.target);
+            // Simulated audio feedback
+            const feedbackText = document.getElementById('feedback-text');
+            feedbackText.innerHTML = '<span class="text-secondary font-bold">Lumi: "Man-zah-nah!"</span>';
+            
+            // Temporary scale up the card
+            const card = document.getElementById('flashcard');
+            card.style.transform = 'scale(1.05)';
+            setTimeout(() => card.style.transform = '', 200);
+        }
+
+        function handleSelection(el, isCorrect) {
+            const feedbackText = document.getElementById('feedback-text');
+            if (isCorrect) {
+                el.classList.remove('border-surface-container-highest');
+                el.classList.add('border-tertiary', 'bg-tertiary-fixed/20');
+                feedbackText.innerHTML = '<span class="text-tertiary font-bold">Excellent! "Apple" is correct! ⭐</span>';
+                createStardust(el);
+                
+                // Update progress bar
+                const progressFill = document.getElementById('progress-fill');
+                progressFill.style.width = '40%';
+            } else {
+                el.classList.add('animate-shake', 'border-error');
+                feedbackText.innerHTML = '<span class="text-error font-bold">Oops! Try again.</span>';
+                setTimeout(() => {
+                    el.classList.remove('animate-shake', 'border-error');
+                }, 500);
+            }
+        }
+
+        function createStardust(container) {
+            const rect = container.getBoundingClientRect();
+            for (let i = 0; i < 12; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'stardust-particle';
+                const size = Math.random() * 8 + 4;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.backgroundColor = i % 2 === 0 ? '#4dffb8' : '#ffb84d';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                container.appendChild(particle);
+                setTimeout(() => particle.remove(), 2000);
+            }
+        }
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+            .animate-shake {
+                animation: shake 0.2s ease-in-out 0s 2;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body></html>

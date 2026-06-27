@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumo Avatar Creator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e9ddff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#f3e6da",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f9ecdf",
+                    "primary-fixed-dim": "#ffb951",
+                    "surface-bright": "#fff8f4",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#ffb84d",
+                    "inverse-surface": "#362f27",
+                    "secondary": "#6b3dca",
+                    "inverse-on-surface": "#fcefe2",
+                    "surface": "#fff8f4",
+                    "tertiary-fixed": "#4dffb8",
+                    "on-primary-container": "#714a00",
+                    "secondary-fixed-dim": "#d1bcff",
+                    "inverse-primary": "#ffb951",
+                    "error": "#ba1a1a",
+                    "on-background": "#201b13",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#5520b3",
+                    "surface-tint": "#825500",
+                    "on-surface-variant": "#514536",
+                    "on-error": "#ffffff",
+                    "tertiary": "#006c49",
+                    "surface-dim": "#e4d8cc",
+                    "primary-fixed": "#ffddb3",
+                    "surface-variant": "#ede0d4",
+                    "on-surface": "#201b13",
+                    "surface-container-highest": "#ede0d4",
+                    "outline": "#837563",
+                    "tertiary-fixed-dim": "#16e19d",
+                    "tertiary-container": "#11e09c",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#d6c4b0",
+                    "primary": "#825500",
+                    "on-tertiary-fixed": "#002113",
+                    "on-secondary-fixed": "#23005b",
+                    "surface-container-low": "#fef1e5",
+                    "background": "#fff8f4",
+                    "on-primary-fixed-variant": "#633f00",
+                    "on-secondary-container": "#fffbff",
+                    "on-tertiary-container": "#005e3f",
+                    "secondary-container": "#8458e4",
+                    "on-primary-fixed": "#291800",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "40px",
+                    "md": "24px",
+                    "gutter": "20px",
+                    "xs": "4px",
+                    "margin-mobile": "24px",
+                    "margin-desktop": "80px",
+                    "xl": "64px",
+                    "base": "8px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Quicksand"],
+                    "headline-lg-mobile": ["Quicksand"],
+                    "headline-lg": ["Quicksand"],
+                    "body-md": ["Quicksand"],
+                    "body-lg": ["Quicksand"],
+                    "headline-xl": ["Quicksand"],
+                    "interactive-text": ["Quicksand"]
+            },
+            "fontSize": {
+                    "label-caps": ["16px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-lg": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "interactive-text": ["22px", {"lineHeight": "24px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Tactical Depth Shadows */
+        .lumo-card {
+            box-shadow: 0 8px 0 0 rgba(130, 85, 0, 0.1);
+        }
+        
+        .lumo-button-primary {
+            box-shadow: 0 4px 0 0 #E6A645;
+            transition: all 0.1s ease;
+        }
+        
+        .lumo-button-primary:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 #E6A645;
+        }
+
+        .floating-lumi {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .category-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .category-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen overflow-x-hidden font-body-md">
+<!-- Top Navigation Anchor (Suppressed in linear Avatar Creator flow as per instructions, using a simplified header) -->
+<header class="bg-surface h-20 w-full flex justify-between items-center px-margin-mobile z-50 shadow-[0_8px_0_0_rgba(130,85,0,0.1)] sticky top-0">
+<div class="flex items-center gap-sm">
+<span class="text-primary font-headline-lg-mobile text-headline-lg-mobile tracking-tight">Lumo</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary text-3xl hover:scale-105 transition-transform" data-icon="close">close</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile py-md lg:py-xl flex flex-col lg:grid lg:grid-cols-12 gap-lg relative">
+<!-- Avatar Preview Section (The Heart) -->
+<div class="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[400px] lg:min-h-[600px] bg-surface-container-low rounded-xl lumo-card">
+<!-- Atmospheric Glow Background -->
+<div class="absolute inset-0 opacity-40">
+
+</div>
+<!-- Lumi Guest Appearance -->
+<div class="absolute top-10 right-10 z-20 floating-lumi hidden md:flex flex-col items-center">
+<div class="bg-white/90 backdrop-blur-md p-md rounded-xl shadow-lg relative mb-4">
+<p class="text-on-surface-variant font-bold">You look magical!</p>
+<div class="absolute -bottom-2 right-8 w-4 h-4 bg-white/90 transform rotate-45"></div>
+</div>
+<div class="w-24 h-24 bg-primary-container rounded-full flex items-center justify-center border-4 border-white shadow-xl">
+<span class="material-symbols-outlined text-on-primary-container text-5xl" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<!-- Character Preview (3D Model Placeholder) -->
+<div class="relative z-10 w-full h-full flex items-center justify-center">
+<img class="h-[300px] md:h-[500px] object-contain drop-shadow-2xl" data-alt="A premium 3D stylized child character avatar for a premium learning app. The character is a cute, friendly kid with soft, rounded features and expressive eyes, wearing bright, colorful clothing in a mix of orange and purple. The character is rendered with soft lighting and a slightly tactile, clay-like texture, standing in a dynamic, happy pose. The background is a soft, out-of-focus magical environment with floating glowing sparkles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfDFeP0mcw68vMjVDt7KdwNj7quyxtTbCY4PbxvQFe-vFV0h41gdO8TomQUDlcC-ihUXiNWtx8mK_h3SU4R_5XpdGIQOG-VYSycI9Y3I7gER5_idi9fKRsJIk4Uuu-CXR2MhOfGN0N1yH4FLq3U0fXfbF6UwiuFKrNKY9gwNzRfkN3yhCgp7B0tn9XONpW0oP_8bpt7jd-SmQu9oFgWN_KHD7HfdY-TBCrNZHBHryfFPZ4tBIS1dZ_6P3_ySvfUvffa0HGzMsu"/>
+</div>
+<!-- Preview Controls -->
+<div class="absolute bottom-6 flex gap-md z-20">
+<button class="bg-white w-14 h-14 rounded-full flex items-center justify-center lumo-card hover:scale-110 active:scale-95 transition-all text-secondary">
+<span class="material-symbols-outlined" data-icon="rotate_left">rotate_left</span>
+</button>
+<button class="bg-white w-14 h-14 rounded-full flex items-center justify-center lumo-card hover:scale-110 active:scale-95 transition-all text-secondary">
+<span class="material-symbols-outlined" data-icon="rotate_right">rotate_right</span>
+</button>
+<button class="bg-white w-14 h-14 rounded-full flex items-center justify-center lumo-card hover:scale-110 active:scale-95 transition-all text-secondary">
+<span class="material-symbols-outlined" data-icon="photo_camera">photo_camera</span>
+</button>
+</div>
+</div>
+<!-- Customization Panel -->
+<div class="lg:col-span-5 flex flex-col gap-lg">
+<!-- Header Text -->
+<div class="space-y-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Design your Hero!</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Choose your favorite looks for today's adventure.</p>
+</div>
+<!-- Categories Tabs -->
+<div class="flex gap-sm overflow-x-auto category-scroll pb-2">
+<button class="px-md py-sm bg-secondary-container text-on-secondary-container rounded-full font-bold whitespace-nowrap flex items-center gap-xs">
+<span class="material-symbols-outlined text-xl" data-icon="face">face</span> Hair
+                </button>
+<button class="px-md py-sm bg-surface-container-highest text-on-surface-variant rounded-full font-bold whitespace-nowrap flex items-center gap-xs hover:bg-secondary-fixed-dim/20">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span> Eyes
+                </button>
+<button class="px-md py-sm bg-surface-container-highest text-on-surface-variant rounded-full font-bold whitespace-nowrap flex items-center gap-xs hover:bg-secondary-fixed-dim/20">
+<span class="material-symbols-outlined text-xl" data-icon="checkroom">checkroom</span> Outfits
+                </button>
+<button class="px-md py-sm bg-surface-container-highest text-on-surface-variant rounded-full font-bold whitespace-nowrap flex items-center gap-xs hover:bg-secondary-fixed-dim/20">
+<span class="material-symbols-outlined text-xl" data-icon="celebration">celebration</span> Accessories
+                </button>
+</div>
+<!-- Options Grid (Bento Style) -->
+<div class="grid grid-cols-3 md:grid-cols-4 gap-md">
+<!-- Hair Option 1 -->
+<button class="aspect-square bg-white border-4 border-transparent hover:border-primary-container p-sm rounded-xl lumo-card transition-all flex items-center justify-center group overflow-hidden">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform" data-alt="A detailed digital 3D icon of a cute, spiky brown hair style for a child avatar. The style is soft, playful, and has a slight shine, rendered with a clay-morphism aesthetic. The background is a clean, neutral white to emphasize the hair shape and texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxNZ7aOL6uOUz3mrCZ2ERmi34p_weKA2tuFvMyJsCInUbMN-RjwNfbMN43MrnmUYzk6zqsns7v6XUBjU5XvYwE4KQJSd9JXFVu0meZWwqBhHf3oi2kQG7aIRhiAkcXJ-vPNVKNuqIsS_rHoyDPKr8dPq9yyZp_pbPa5zar7JCSRTJtiAa_Me06Tnfqp6NADIxbTBjKZ-jeLcbvproGWFtSW-MCgv5tLS5GeMkSQK1jPRRkaYij889PaQY6uHgx93TfNYjboJrx"/>
+</button>
+<!-- Hair Option 2 -->
+<button class="aspect-square bg-white border-4 border-primary-container p-sm rounded-xl lumo-card transition-all flex items-center justify-center relative group overflow-hidden">
+<div class="absolute top-2 right-2 w-6 h-6 bg-primary-container rounded-full flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-white text-xs" data-icon="check">check</span>
+</div>
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform" data-alt="A beautiful digital 3D icon of long, wavy purple hair with two small ponytails for a child avatar. The hair has a magical, soft glow and is rendered in a friendly, animated style with vibrant purple and pink highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaQHJLD6eb2yTGu6ks3zwZoc9HpGumRCWuZa-ptkqi-h17BQa1pn9t6EF2ePOCTaO5Eo46JSTo_0szVc3ItXesnn5KFgTwRFuFEuufsfzILQryHIYVW6G3JFIm-E--X0A9zO3jfgrb2bH5lJ5urUFnz-9QKhyTbT-TaEZ266jLl9wIRxfC4oJXImRB63IbePf5w1zrTtNbqek0eUEGx5V8GoCKnz1Je8OFITZfeRDLPsZ9oYH8eQB3FH-PQWQdpp5EfHOf_n3C"/>
+</button>
+<!-- Hair Option 3 -->
+<button class="aspect-square bg-white border-4 border-transparent hover:border-primary-container p-sm rounded-xl lumo-card transition-all flex items-center justify-center group overflow-hidden">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform" data-alt="A clean 3D icon of a short, curly black hair style for a child character. The curls are defined and soft, with high-quality rendering that gives it a tactile, physical look, perfect for a high-end avatar creator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMte5o6UtC5VjDExlwWgEpvLpW_fze7dJAJD8CNhTM0FCfWyxF9hv5VAboHaO0E32aV924kLvNqTIBoNjV8EXesO3HuWT563SHDpZWFWZnEN4sv_sNWcjyHQ2iD1BulfG12HWf2JRgFfrZ80RV0ZLdiLUlcFGzthBRrRVISzSfQXfm3gt2NqNyO84C_Og2tK9WI-E1DgDVJeqgmc2d4m-63LlQ1pwGv2FmUMpbe3fci3UKtSXqFc7EvTrXAsgu8RJGxSnFXh4z"/>
+</button>
+<!-- Hair Option 4 -->
+<button class="aspect-square bg-white border-4 border-transparent hover:border-primary-container p-sm rounded-xl lumo-card transition-all flex items-center justify-center group overflow-hidden">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform" data-alt="A stylized 3D icon of a child's buzz cut hair style with a lightning bolt pattern on the side. The style is modern and playful, with a soft matte finish in a warm honey blonde color." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8kBmsILUcxdJkNDhe8fU5hdKmRhLNsEMfQZLsNfkyWxEwTPMrwVyDtTCKMe9mDd3eD9Lk4BVkIw0xkdaW7A1Y5theA3V7DppN2vEHxPUKIa6UafiR_0Qkg3ncssC8uaI8ujxSVE8ZhV9I4SXogZdEkeRQpgJUnDUIITMgkp58MXlmMLY9b7IqpduKB23oWZ-qtNH-qFivP1HnEnl952R-W2Qs3t-5OkasWMrSoAjJXsqcLtLLJ9KFwO4G-WyfCy9EaZ7gJ5xL"/>
+</button>
+<!-- Hair Option 5 -->
+<button class="aspect-square bg-white border-4 border-transparent hover:border-primary-container p-sm rounded-xl lumo-card transition-all flex items-center justify-center group overflow-hidden">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform" data-alt="A playful 3D icon of a child's messy bun hair style in a vibrant orange color. The hair looks soft and slightly windswept, with a few loose strands framing the face, rendered in a beautiful high-end animation style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5EwATZBH-LdFx55VLxQ8c0bgs9HWT5Xl-H4CeKdNH4s2rjUiTjz82lGf5zHOqskBBOEq5bYj5W39d3X5PU54XDxOv7fYl5mXQTL6Pm4ute8EtSu5vDF8Dnq_UAnp8KZHbLnpkEMJS95ZyrjszqpK396oh9xoVDflXY8lK8TeQ3rT5gOoDFv1rQPLKGrmydc_oi-HeoQQCJ8shgRuMbRWnuumGUIW8IAQp-5BQdba_QE7v66w0EQfYJtSjWQz7BCFuZARzLxM0"/>
+</button>
+<!-- Hair Option 6 (Locked) -->
+<button class="aspect-square bg-surface-variant/50 p-sm rounded-xl border-4 border-dashed border-outline-variant flex flex-col items-center justify-center group">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl mb-1" data-icon="lock">lock</span>
+<span class="text-[12px] font-bold text-on-surface-variant">LEVEL 5</span>
+</button>
+<!-- Hair Option 7 (Premium) -->
+<button class="aspect-square bg-gradient-to-br from-tertiary-container/30 to-secondary-container/30 border-4 border-transparent hover:border-tertiary p-sm rounded-xl lumo-card transition-all flex items-center justify-center group overflow-hidden relative">
+<span class="absolute top-2 left-2 material-symbols-outlined text-tertiary text-lg" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform" data-alt="A rare, magical galaxy-themed hair style for a 3D avatar. The hair is translucent with swirling deep blues and purples, containing tiny glowing star-like particles, creating a sense of cosmic wonder." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk2TVX6dHqmwvKId_PI5bv045rELfXlpDfEs922xAhWNqiG0TFn6PN_VvZBTiZnYjdFbnA_MfbwrMBK4muospAgtfLDcK33ZOtCQT6X8uSxK8WY3KyZufzJuU5xvU-2iICQIaQZ4fpjKBzFah2itrcLpUPCVSTdnuGrSJ1TvjCp6nzmKuaiQdOG50lQARl6n9zFK5I07RM5hA4F81omWncbXBBqQ7v11Y8L5rd7IkORwoabQiv4zj5XNKMrbAwCsyAfCdxHJjo"/>
+</button>
+</div>
+<!-- Color Palette Picker -->
+<div class="space-y-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Magic Colors</span>
+<div class="flex gap-md">
+<button class="w-12 h-12 rounded-full border-4 border-white shadow-md bg-secondary ring-2 ring-secondary transition-transform active:scale-90"></button>
+<button class="w-12 h-12 rounded-full border-4 border-white shadow-md bg-primary-container hover:scale-105 transition-transform"></button>
+<button class="w-12 h-12 rounded-full border-4 border-white shadow-md bg-tertiary hover:scale-105 transition-transform"></button>
+<button class="w-12 h-12 rounded-full border-4 border-white shadow-md bg-error hover:scale-105 transition-transform"></button>
+<button class="w-12 h-12 rounded-full border-4 border-white shadow-md bg-[#60A5FA] hover:scale-105 transition-transform"></button>
+</div>
+</div>
+<!-- CTA Container -->
+<div class="mt-auto pt-lg border-t border-surface-variant">
+<button class="w-full py-md px-xl bg-primary-container text-on-primary-container rounded-full font-headline-lg-mobile text-headline-lg-mobile lumo-button-primary flex items-center justify-center gap-md group">
+                    Ready to Explore!
+                    <span class="material-symbols-outlined text-3xl group-hover:translate-x-2 transition-transform" data-icon="rocket_launch">rocket_launch</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Success Confetti (Hidden by default) -->
+<div class="fixed inset-0 pointer-events-none z-[100] overflow-hidden" id="confetti-container"></div>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                // Simple generic click feedback for items without custom active states
+                if (!button.classList.contains('lumo-button-primary')) {
+                    button.style.transform = 'scale(0.95)';
+                }
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = '';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = '';
+            });
+        });
+
+        // Toggle Active State for Hair Options
+        const hairButtons = document.querySelectorAll('.grid > button');
+        hairButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if(btn.querySelector('.material-symbols-outlined[data-icon="lock"]')) return;
+                
+                hairButtons.forEach(b => b.classList.remove('border-primary-container'));
+                hairButtons.forEach(b => {
+                    const check = b.querySelector('.material-symbols-outlined[data-icon="check"]');
+                    if(check) check.parentElement.remove();
+                });
+
+                btn.classList.add('border-primary-container');
+                const checkMark = document.createElement('div');
+                checkMark.className = "absolute top-2 right-2 w-6 h-6 bg-primary-container rounded-full flex items-center justify-center z-10";
+                checkMark.innerHTML = `<span class="material-symbols-outlined text-white text-xs" data-icon="check">check</span>`;
+                btn.appendChild(checkMark);
+            });
+        });
+    </script>
+</body></html>

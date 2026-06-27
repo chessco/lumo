@@ -1,0 +1,336 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ===========================================
+// MULTI-TENANCY CORE TABLES
+// ===========================================
+
+model Organization {
+  id         String   @id @default(uuid())
+  name       String
+  slug       String   @unique
+  logo       String?
+  email      String?
+  phone      String?
+  address    String?
+  settings   Json?
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  created_by String?
+  updated_by String?
+  updatedAt  DateTime @updatedAt
+
+  // Relations
+  users     Membership[]
+  children  Child[]
+  settings_ TenantSetting[]
+  roles     Role[]
+
+  @@map("organizations")
+}
+
+model User {
+  id          String    @id @default(uuid())
+  email       String    @unique
+  password    String
+  firstName   String?
+  lastName    String?
+  avatar      String?
+  phone       String?
+  isActive    Boolean   @default(true)
+  lastLoginAt DateTime?
+  createdAt   DateTime  @default(now())
+  created_by  String?
+  updated_by  String?
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  memberships Membership[]
+  children    Child[]      @relation("ParentChildren")
+
+  @@map("users")
+}
+
+model Membership {
+  id        String   @id @default(uuid())
+  userId    String
+  tenant_id String
+  roleId    String?
+  isActive  Boolean  @default(true)
+  joinedAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  role         Role?        @relation(fields: [roleId], references: [id])
+
+  @@unique([userId, tenant_id])
+  @@map("memberships")
+}
+
+model Role {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  tenant_id   String
+  permissions Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  organization Organization @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  memberships  Membership[]
+
+  @@unique([name, tenant_id])
+  @@map("roles")
+}
+
+model Permission {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  resource    String
+  action      String
+  createdAt   DateTime @default(now())
+  created_by  String?
+  updated_by  String?
+
+  @@map("permissions")
+}
+
+model TenantSetting {
+  id        String   @id @default(uuid())
+  tenant_id String
+  key       String
+  value     Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  organization Organization @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+
+  @@unique([tenant_id, key])
+  @@map("tenant_settings")
+}
+
+// ===========================================
+// CHILDREN & PROFILES
+// ===========================================
+
+model Child {
+  id          String    @id @default(uuid())
+  tenant_id   String
+  parentId    String?
+  firstName   String
+  lastName    String?
+  dateOfBirth DateTime?
+  avatar      String?
+  preferences Json?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  organization   Organization     @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  parent         User?            @relation("ParentChildren", fields: [parentId], references: [id])
+  speechSessions SpeechSession[]
+  speechProgress SpeechProgress[]
+  speechRewards  SpeechReward[]
+  ReadingSession ReadingSession[]
+
+  @@map("children")
+}
+
+// ===========================================
+// LUMO SPEAK MODULE
+// ===========================================
+
+model SpeechSession {
+  id         String    @id @default(uuid())
+  childId    String
+  tenant_id  String
+  exerciseId String?
+  startedAt  DateTime  @default(now())
+  endedAt    DateTime?
+  duration   Int? // in seconds
+  status     String    @default("active") // active, completed, abandoned
+  metadata   Json?
+
+  // Relations
+  child           Child            @relation(fields: [childId], references: [id], onDelete: Cascade)
+  exercise        SpeechExercise?  @relation(fields: [exerciseId], references: [id])
+  phonemeAttempts PhonemeAttempt[]
+  audioRecordings AudioRecording[]
+
+  @@map("speech_sessions")
+}
+
+model SpeechExercise {
+  id             String   @id @default(uuid())
+  tenant_id      String
+  name           String
+  description    String?
+  difficulty     String   @default("beginner") // beginner, intermediate, advanced
+  category       String? // vowels, consonants, words, sentences
+  targetPhonemes Json? // array of phoneme IDs
+  content        Json? // exercise content, prompts, etc.
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  created_by     String?
+  updated_by     String?
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  sessions SpeechSession[]
+
+  @@map("speech_exercises")
+}
+
+model Phoneme {
+  id         String   @id @default(uuid())
+  symbol     String   @unique // IPA symbol
+  name       String
+  language   String   @default("es") // ISO language code
+  examples   Json? // array of example words
+  audioUrl   String?
+  createdAt  DateTime @default(now())
+  created_by String?
+  updated_by String?
+
+  // Relations
+  attempts PhonemeAttempt[]
+
+  @@map("phonemes")
+}
+
+model PhonemeAttempt {
+  id          String   @id @default(uuid())
+  sessionId   String
+  phonemeId   String
+  score       Float // 0-100 pronunciation score
+  feedback    String?
+  audioUrl    String?
+  attemptedAt DateTime @default(now())
+
+  // Relations
+  session SpeechSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  phoneme Phoneme       @relation(fields: [phonemeId], references: [id])
+
+  @@map("phoneme_attempts")
+}
+
+model AudioRecording {
+  id            String   @id @default(uuid())
+  sessionId     String
+  childId       String
+  fileUrl       String
+  duration      Float? // in seconds
+  mimeType      String   @default("audio/webm")
+  fileSize      Int? // in bytes
+  transcription String?
+  createdAt     DateTime @default(now())
+
+  // Relations
+  session SpeechSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@map("audio_recordings")
+}
+
+model SpeechProgress {
+  id            String   @id @default(uuid())
+  childId       String
+  tenant_id     String
+  date          DateTime @default(now())
+  totalSessions Int      @default(0)
+  totalDuration Int      @default(0) // in seconds
+  averageScore  Float?
+  streakDays    Int      @default(0)
+  level         Int      @default(1)
+  experience    Int      @default(0)
+  metadata      Json?
+
+  // Relations
+  child Child @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, date])
+  @@map("speech_progress")
+}
+
+model SpeechReward {
+  id          String   @id @default(uuid())
+  childId     String
+  tenant_id   String
+  type        String // badge, achievement, milestone
+  name        String
+  description String?
+  icon        String?
+  earnedAt    DateTime @default(now())
+  metadata    Json?
+
+  // Relations
+  child Child @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@map("speech_rewards")
+}
+
+// ===========================================
+// READING & STORIES MODULE
+// ===========================================
+
+model Language {
+  id         String   @id @default(uuid())
+  tenant_id  String
+  code       String // e.g. es, en
+  name       String
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  created_by String?
+  updated_by String?
+  updatedAt  DateTime @updatedAt
+
+  @@map("languages")
+}
+
+model Story {
+  id         String   @id @default(uuid())
+  tenant_id  String
+  title      String
+  content    Json?
+  difficulty String   @default("beginner")
+  languageId String?
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  created_by String?
+  updated_by String?
+  updatedAt  DateTime @updatedAt
+
+  readingSessions ReadingSession[]
+
+  @@map("stories")
+}
+
+model ReadingSession {
+  id         String    @id @default(uuid())
+  childId    String
+  tenant_id  String
+  storyId    String
+  startedAt  DateTime  @default(now())
+  endedAt    DateTime?
+  duration   Int?
+  status     String    @default("active")
+  metadata   Json?
+  created_by String?
+  updated_by String?
+
+  child Child @relation(fields: [childId], references: [id], onDelete: Cascade)
+  story Story @relation(fields: [storyId], references: [id])
+
+  @@map("reading_sessions")
+}

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Lumo World - Adventures Await</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Font: Quicksand -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Design System Implementation -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface": "#fff8f4",
+                "outline-variant": "#d6c4b0",
+                "outline": "#837563",
+                "secondary-fixed": "#e9ddff",
+                "primary-fixed-dim": "#ffb951",
+                "tertiary-fixed-dim": "#16e19d",
+                "tertiary": "#006c49",
+                "primary-fixed": "#ffddb3",
+                "inverse-on-surface": "#fcefe2",
+                "secondary": "#6b3dca",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed-variant": "#005236",
+                "surface-variant": "#ede0d4",
+                "on-error": "#ffffff",
+                "tertiary-container": "#11e09c",
+                "on-secondary-fixed-variant": "#5520b3",
+                "surface-container-high": "#f3e6da",
+                "surface-bright": "#fff8f4",
+                "surface-tint": "#825500",
+                "tertiary-fixed": "#4dffb8",
+                "error-container": "#ffdad6",
+                "on-surface": "#201b13",
+                "secondary-container": "#8458e4",
+                "surface-container-low": "#fef1e5",
+                "surface-dim": "#e4d8cc",
+                "inverse-primary": "#ffb951",
+                "primary": "#825500",
+                "inverse-surface": "#362f27",
+                "on-tertiary-container": "#005e3f",
+                "on-secondary-container": "#fffbff",
+                "primary-container": "#ffb84d",
+                "background": "#fff8f4",
+                "on-tertiary": "#ffffff",
+                "on-secondary": "#ffffff",
+                "surface-container": "#f9ecdf",
+                "surface-container-highest": "#ede0d4",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-fixed": "#23005b",
+                "on-surface-variant": "#514536",
+                "on-primary-container": "#714a00",
+                "on-error-container": "#93000a",
+                "secondary-fixed-dim": "#d1bcff",
+                "on-background": "#201b13",
+                "on-primary-fixed": "#291800",
+                "on-primary-fixed-variant": "#633f00",
+                "on-tertiary-fixed": "#002113",
+                "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "base": "8px",
+                "xl": "64px",
+                "md": "24px",
+                "xs": "4px",
+                "gutter": "20px",
+                "lg": "40px",
+                "margin-desktop": "80px",
+                "sm": "12px",
+                "margin-mobile": "24px"
+            },
+            "fontFamily": {
+                "body-lg": ["Quicksand"],
+                "label-caps": ["Quicksand"],
+                "headline-lg": ["Quicksand"],
+                "headline-lg-mobile": ["Quicksand"],
+                "body-md": ["Quicksand"],
+                "interactive-text": ["Quicksand"],
+                "headline-xl": ["Quicksand"]
+            },
+            "fontSize": {
+                "body-lg": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                "label-caps": ["16px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                "body-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                "interactive-text": ["22px", {"lineHeight": "24px", "fontWeight": "700"}],
+                "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            background-color: #fff8f4;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+
+        /* Perspective Map Container */
+        .world-map-container {
+            perspective: 1200px;
+            overflow: hidden;
+        }
+
+        .world-map-inner {
+            transform: rotateX(30deg) translateY(-50px);
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .floating { animation: float 4s ease-in-out infinite; }
+        
+        @keyframes sway {
+            0% { transform: skewX(0deg); }
+            50% { transform: skewX(2deg); }
+            100% { transform: skewX(0deg); }
+        }
+        .sway { animation: sway 3s ease-in-out infinite; transform-origin: bottom; }
+
+        @keyframes cloud-move {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100vw); }
+        }
+        .cloud { animation: cloud-move 60s linear infinite; }
+
+        /* Tactile Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(130, 85, 0, 0.08);
+        }
+
+        /* 3D Button Style */
+        .btn-3d-primary {
+            box-shadow: 0 4px 0 #E6A645;
+            transition: all 0.1s ease;
+        }
+        .btn-3d-primary:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #E6A645;
+        }
+
+        .lumi-glow {
+            filter: drop-shadow(0 0 15px rgba(255, 185, 81, 0.8));
+        }
+
+        /* Custom Scrollbar for the map area */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d6c4b0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface select-none">
+<!-- Top AppBar (from JSON) -->
+<header class="flex justify-between items-center px-margin-mobile py-sm w-full z-40 fixed top-0 bg-transparent">
+<div class="flex items-center gap-2">
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-primary">Lumo</span>
+</div>
+<div class="flex items-center gap-xs">
+<!-- Trailings Actions -->
+<button class="p-2 hover:scale-105 transition-transform active:scale-95 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</button>
+<button class="p-2 hover:scale-105 transition-transform active:scale-95 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grade</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden ml-2 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A cute child's profile avatar rendered in a 3D clay-like style with bright happy eyes and soft textures. The avatar is set against a vibrant purple background. Premium quality 3D digital character art with soft studio lighting and adorable proportions suitable for a high-end educational app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfZzNZWrh-_zWud4myN3wNZpbjm2_kj99Amkp3bSq5wAnZ5Ool6mHWTAcvAsQ4HqTDFsEW0hv2P1qMpAQ40RAmS71uiB11JF-DjMtV5njdiHOlFQ_i6kyL2hYSxIwPNV0C0ZcPhlQGAlivfYMSKnr-aSHK6wpm7iQrap37Vzk2nDX5JC8SPrcjg4I-CoLGyQ2Op_b17U_1ZMTin5gl9xYcPrikl8xU4zLW58p2Zm6nXJMett2sStWFSe4ZvlLRMtwPF-NQqT-Z"/>
+</div>
+</div>
+</header>
+<!-- Map Content Canvas -->
+<main class="relative h-screen w-screen overflow-hidden world-map-container bg-[#87CEEB]">
+<!-- Background Atmosphere: Clouds -->
+<div class="absolute inset-0 pointer-events-none z-0">
+<div class="cloud absolute top-[10%] opacity-60 w-32 h-16 bg-white rounded-full blur-md"></div>
+<div class="cloud absolute top-[25%] opacity-40 w-48 h-20 bg-white rounded-full blur-lg" style="animation-delay: -15s; animation-duration: 45s;"></div>
+<div class="cloud absolute top-[15%] opacity-50 w-40 h-14 bg-white rounded-full blur-md" style="animation-delay: -30s; animation-duration: 80s;"></div>
+</div>
+<!-- The World Layout -->
+<div class="world-map-inner relative w-[150vw] h-[1536px] left-[-25vw] top-[51px] p-xl">
+<!-- Ground Texture -->
+<div class="absolute inset-0 bg-[#A8D08D] rounded-[10rem] border-[16px] border-[#92B979] shadow-inner opacity-90 overflow-hidden">
+<!-- River or Paths -->
+<div class="absolute top-1/2 left-0 w-full h-32 bg-[#76C7C0] opacity-40 blur-xl transform rotate-12"></div>
+</div>
+<!-- Area: The Central Home -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 group">
+<div class="relative floating" style="animation-duration: 5s;">
+<!-- The Child's Customizable House -->
+<div class="w-48 h-48 md:w-64 md:h-64 cursor-pointer hover:scale-110 transition-transform duration-500">
+<img class="w-full h-full object-contain" data-alt="A cozy, whimsical 3D house designed for a child hero in a magical learning world. The house has a circular wooden door, a chimney puffing heart-shaped smoke, and a roof made of large colorful shingles in orange and purple. Surrounded by tiny glowing flower bushes in a lush garden, light mode, high saturation, 3D render, octane render style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3mkARImF_diLUUFvXl44r8be_hJLEeOac0u50wMewJVbX4UTztzUj5pFapGAuQEuNpqmzzTkM5KHEwl-xLeG-M1PzhBla9WaIkGUZsLG7yPPyYdesxguFqqmH9g6NakDxamDeBYECxrA3kDq-9uQQB54FYc6q8GH4ELP4gsvC9ZYbWBXpV3EopLd2J_5cgnB-iLOOCTEvq_8_yBd2YSDb8oE6GWSCeHMKf7KLRmbXAO8p2Ue-SHuQbChkESbQ_pIbnAeA5N3o"/>
+</div>
+<!-- Label -->
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-6 py-2 bg-white rounded-full shadow-lg border-2 border-primary-container">
+<span class="text-label-caps font-label-caps text-on-surface">MY HOME</span>
+</div>
+</div>
+</div>
+<!-- Area: Story Sea (Reading Category) -->
+<div class="absolute top-1/4 left-1/4 z-10">
+<div class="relative group cursor-pointer">
+<div class="w-40 h-40 md:w-56 md:h-56 transform group-hover:scale-105 transition-transform">
+<img class="w-full h-full object-contain" data-alt="A floating magical island in the shape of an open book, with waterfalls of shimmering ink and large floating alphabet trees. The style is soft, magical, and colorful like a dreamland. Soft sunlight illuminates the vibrant green grass and blue water, 3D clay style, bright primary colors, premium educational app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrjiZcJ2cErWXuMv5gQHAXmEDkMQAlMnV9T8e4jmPNLBxkzA9Pj_nDy54-olEIkk7HUwpXxiB8co2igz1BghlL-m3Gn390RBdxjkg7uJ9rmTBbM6kUuydHibYg-meG9_IiYrbJXNmNCIivWduQOh4lZbO-Ld_ctkpRadju7wv--JRab7XpsSq8nYD97JFPi1GCC_X0VTSW4ty0vO0O1CnTGtdKBffgydR-fUvZwnwgITOGT63q24zhJdZbI2wishZsgLgyt8VS"/>
+</div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-tertiary-container text-on-tertiary-container rounded-full shadow-md font-bold text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">auto_stories</span>
+                        READING
+                    </div>
+</div>
+</div>
+<!-- Area: Echo Valley (Speaking Category) -->
+<div class="absolute bottom-1/4 right-1/4 z-10">
+<div class="relative group cursor-pointer">
+<div class="w-40 h-40 md:w-56 md:h-56 transform group-hover:scale-105 transition-transform">
+<img class="w-full h-full object-contain" data-alt="A 3D whimsical valley with giant glowing musical notes and colorful speaker-shaped mountains. Fluffy clouds float around the peaks. The lighting is warm and joyful, featuring a palette of purple and orange. High-quality game asset style, cute, friendly, tactile, and bright." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX98WX8fPC3NXqErtL3L4ItU7_E0Z6ddw4tqa2W6SxmNDqnAjZu7CYdxqKn5C18Azqtv8rvlzTtC4H10B3sdrp2qDmEu8LBtiJckDZzcCzrsbG_AsnDyVo7fA2wuszli23_J8t8_PUxjrwvZ4kCONlSjDnXzp2HTJWMtG2deC0csN1CyOxF4oWxdwOPb6s6pxFMI9eSDaJzc_5C2vjU3t2raIuCG9NsfPIuoR7VJnVSpPvVYW0SsT2KDkakj-H18icrxe37S9S"/>
+</div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 bg-secondary-container text-on-secondary-container rounded-full shadow-md font-bold text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+                        SPEAKING
+                    </div>
+</div>
+</div>
+<!-- Locked Area: Mystery Mountain (Level 5) -->
+<div class="absolute top-[10%] right-[15%] z-10 opacity-70 grayscale">
+<div class="relative group cursor-not-allowed">
+<div class="w-36 h-36 md:w-52 md:h-52">
+<img class="w-full h-full object-contain" data-alt="A mysterious 3D mountain shrouded in magical sparkling mist with a giant golden gate at the front. The mountain is covered in colorful crystal clusters. Although it's grayscaled in-game, the base design is vibrant and lush. Octane render, 3D fantasy world map asset." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvyvcN16jdwqZj12kTEKVTwsobaccreONGOkkh1FcHfBxmIZumUgDb5BNpijejq6jjSVZjSyJUSh3-lvKGNv1NsDoriBlJWHFptdLB3Q5ZQjbA972ucA-UArNehxxsVb9mTV6qYZVqg9TX9enKtqviLhVCSSXHUqACrsm2ZzmhQmvYtIJrbf-N38Oy_nfBcA3RY5Qpbgvs2U5tGS0gVYF0SXSDajejg73fVkvIjLahzO53S-64zJbAzAdHbJSwWyum1hacE5Hg"/>
+</div>
+<!-- Lock Overlay -->
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-outline text-5xl bg-white/80 rounded-full p-2 mb-2">lock</span>
+<div class="px-4 py-1 bg-outline text-white rounded-full text-[12px] font-bold tracking-widest uppercase">Unlock at Level 5</div>
+</div>
+</div>
+</div>
+<!-- Lumi Flying Near Objective -->
+<div class="absolute top-[45%] left-[40%] z-40 cursor-pointer pointer-events-auto" id="lumi-companion">
+<div class="relative floating lumi-glow">
+<div class="w-24 h-24">
+<img class="w-full h-full object-contain" data-alt="Lumi, the friendly AI star companion. A soft, glowing, golden star-shaped creature with large expressive eyes and a friendly smile. Lumi has small, translucent wings and is surrounded by a gentle aura of stardust. 3D Pixar-style character design, high gloss, soft materials." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKLAqpH2WpNt0LaluW6_aAQhDI_MORe7TqaQAbq4Fhkld8AGkDDiGLi1SwLn5NzlHEJdyoRMjILZCHnM4XzFnUHd1nfC39_XZzLJVPZHyJqiJ_SPcbL9LwhYw7QwrZLWhTi4WOL7mDfRWYK6fQEJzK7cht4ZJbjZR4jN5RnVbWmAHNRi6Rc-4NmewPaPE7nEhBzscPkjvGAekE5UOnZ54lnPUujalaL3v3AT5Ty2IdcOfHBsrdBgI4V4Rpofb_yO4gKTUq6thf"/>
+</div>
+<!-- Speech Bubble -->
+<div class="absolute -top-16 -right-32 w-48 bg-white p-3 rounded-xl rounded-bl-none shadow-xl border-2 border-primary-container">
+<p class="text-sm font-bold text-on-surface leading-tight">Ready to visit the Story Sea?</p>
+</div>
+</div>
+</div>
+<!-- Decorative Swaying Trees -->
+<div class="absolute bottom-[40%] left-[20%] sway">
+<img class="w-16 h-24 object-contain" data-alt="A cluster of stylized 3D pine trees with soft, rounded bulbous shapes, colored in a vibrant lime green. The trunks are a warm cocoa brown. Hand-painted texture feel, game-ready asset, bright lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsBRjXD0kPf_FSV_fctbO3FyVISUGzI0i69mhyIoGE3nR7O7PkaoKWYn_Xy_1hqmhlKi65JXPrUN-CwTMi3p3OG33eQ3KkucnwIdVLnSEFZXUkySh-F6Qc0XWfeoz7XBNL9Exa6vKrmxJOPmoRIuchAZF1LhZFhMr7ITyWTkrlktqDPNUpeSz-SlCaChrgqKXuhYH70bcLfADPl5HPqPHuQjsdmygYzo_vKPRHUgDCZRHS63c05LkDF_qjXp6P8gwm-o4u0-tA"/>
+</div>
+<div class="absolute top-[30%] right-[30%] sway" style="animation-delay: -1s;">
+<img class="w-20 h-32 object-contain" data-alt="Whimsical 3D palm trees with oversized leaves and hanging glowing fruits in neon colors. Fun and playful aesthetic, high-end 3D mobile game environmental prop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZUgdbOfT1QtloTjWbtSF-6C_9rPoOPSfE6q4cHBxj6C2KLp8WEe5TGdfumJz_TqiUtudIR7_JGDB7Jzy3EIgJ0Y6TCkmrXP6tO04QQcbDGHkgJJIxOvEyEu6JZf7Lqt4IcfLuJt8MnNfpCtICD3PljxgxB4og8uPUHCh9k7rgmMcxLd9satHCPVkFYCPn3eOCSHGHLUVW8AH5ENLr9W_moUWD05XTIrsptC1kW5MwiNYpnkff-U_y8roIRfE62KqV2YCb-xYj"/>
+</div>
+</div>
+</main>
+<!-- Side Map HUD: Shop & Friends -->
+<div class="fixed top-24 right-6 flex flex-col gap-4 z-50">
+<button class="w-16 h-16 glass-card rounded-full flex items-center justify-center text-primary border-4 border-white hover:scale-110 active:scale-90 transition-all shadow-lg">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="text-[10px] font-bold">SHOP</span>
+</div>
+</button>
+<button class="w-16 h-16 glass-card rounded-full flex items-center justify-center text-secondary border-4 border-white hover:scale-110 active:scale-90 transition-all shadow-lg">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="text-[10px] font-bold">FRIENDS</span>
+</div>
+</button>
+</div>
+<!-- Objective Tracker -->
+<div class="fixed bottom-28 left-6 right-6 md:left-margin-mobile md:right-auto md:w-80 z-50">
+<div class="glass-card p-4 rounded-xl border-b-4 border-tertiary shadow-xl flex items-center gap-4">
+<div class="w-12 h-12 bg-tertiary-container rounded-lg flex items-center justify-center text-on-tertiary-container shrink-0">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-outline uppercase tracking-wider">Current Goal</p>
+<p class="text-body-md font-bold text-on-surface truncate">Read "The Brave Little Comet"</p>
+<div class="w-full bg-surface-container-highest h-2 rounded-full mt-1 overflow-hidden">
+<div class="bg-gradient-to-r from-tertiary-container to-tertiary h-full w-2/3 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (from JSON) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end pb-safe px-4 h-24 bg-surface-container rounded-t-xl shadow-lg shadow-[0_-4px_20px_rgba(130,85,0,0.1)]">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-3 mb-2 transform -translate-y-2 border-b-4 border-primary scale-90 inner-shadow transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-caps font-label-caps uppercase text-[10px] mt-1">Home</span>
+</a>
+<!-- Speak -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors" href="#">
+<span class="material-symbols-outlined">mic</span>
+<span class="text-label-caps font-label-caps uppercase text-[10px] mt-1">Speak</span>
+</a>
+<!-- Read -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-label-caps font-label-caps uppercase text-[10px] mt-1">Read</span>
+</a>
+<!-- Stories -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-label-caps font-label-caps uppercase text-[10px] mt-1">Stories</span>
+</a>
+<!-- World -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-surface-bright transition-colors" href="#">
+<span class="material-symbols-outlined">public</span>
+<span class="text-label-caps font-label-caps uppercase text-[10px] mt-1">World</span>
+</a>
+</nav>
+<!-- Floating Action Button: Contextual for Map (Fly) -->
+<button class="fixed bottom-32 right-6 w-16 h-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center btn-3d-primary z-50">
+<span class="material-symbols-outlined text-3xl">flight</span>
+</button>
+<!-- Map Pan Interaction Script -->
+<script>
+        const mapInner = document.querySelector('.world-map-inner');
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
+
+        document.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - mapInner.offsetLeft;
+            startY = e.pageY - mapInner.offsetTop;
+            mapInner.style.transition = 'none';
+        });
+
+        document.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            mapInner.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - mapInner.offsetLeft;
+            const y = e.pageY - mapInner.offsetTop;
+            const walkX = (x - startX) * 0.5; 
+            const walkY = (y - startY) * 0.5;
+            
+            // Simple boundaries and movement feel
+            mapInner.style.transform = `rotateX(30deg) translate(${walkX}px, ${walkY}px)`;
+        });
+
+        // Touch support
+        document.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX - mapInner.offsetLeft;
+            startY = e.touches[0].pageY - mapInner.offsetTop;
+            mapInner.style.transition = 'none';
+        });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+            mapInner.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - mapInner.offsetLeft;
+            const y = e.touches[0].pageY - mapInner.offsetTop;
+            const walkX = (x - startX) * 0.5;
+            const walkY = (y - startY) * 0.5;
+            mapInner.style.transform = `rotateX(30deg) translate(${walkX}px, ${walkY}px)`;
+        });
+
+        // Micro-interaction: Clicking Lumi
+        const lumi = document.getElementById('lumi-companion');
+        lumi.addEventListener('click', () => {
+            lumi.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                lumi.style.transform = 'scale(1)';
+            }, 200);
+            
+            // Create starburst particles
+            for(let i=0; i<8; i++) {
+                const star = document.createElement('span');
+                star.className = 'material-symbols-outlined absolute pointer-events-none text-yellow-400';
+                star.style.fontVariationSettings = "'FILL' 1";
+                star.innerText = 'star';
+                star.style.left = '50%';
+                star.style.top = '50%';
+                star.style.transition = 'all 0.6s ease-out';
+                lumi.appendChild(star);
+                
+                const angle = (i / 8) * Math.PI * 2;
+                const dist = 60 + Math.random() * 40;
+                
+                requestAnimationFrame(() => {
+                    star.style.transform = `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px) scale(0)`;
+                    star.style.opacity = '0';
+                });
+                
+                setTimeout(() => star.remove(), 700);
+            }
+        });
+    </script>
+</body></html>

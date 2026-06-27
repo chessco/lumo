@@ -1,0 +1,32 @@
+services:
+  lumo-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: lumo-api
+    restart: always
+    env_file:
+      - ./api/.env.prod
+    environment:
+      PORT: 3017
+    ports:
+      - "3017:3017"
+    networks:
+      - pitayacode_net
+    depends_on:
+      - lumo-web
+
+  lumo-web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: lumo-web
+    restart: always
+    ports:
+      - "3000:80"
+    networks:
+      - pitayacode_net
+
+networks:
+  pitayacode_net:
+    external: true
