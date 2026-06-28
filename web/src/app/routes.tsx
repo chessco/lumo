@@ -19,6 +19,10 @@ const SpeakResultsPage = lazy(() => import('@/features/speech/pages/SpeakResults
 const StorySelectPage = lazy(() => import('@/features/stories/pages/StorySelectPage'));
 const StoryReaderPage = lazy(() => import('@/features/stories/pages/StoryReaderPage'));
 
+// Languages
+const LanguageSelectPage = lazy(() => import('@/features/languages/pages/LanguageSelectPage'));
+const LanguagePracticePage = lazy(() => import('@/features/languages/pages/LanguagePracticePage'));
+
 // World
 const LumoWorldPage = lazy(() => import('@/features/world/pages/LumoWorldPage'));
 const TrophyRoomPage = lazy(() => import('@/features/world/pages/TrophyRoomPage'));
@@ -63,6 +67,8 @@ export const routes = {
     { path: '/app/speak/results/:id', element: SpeakResultsPage },
     { path: '/app/stories', element: StorySelectPage },
     { path: '/app/stories/read/:id', element: StoryReaderPage },
+    { path: '/app/languages', element: LanguageSelectPage },
+    { path: '/app/languages/:languageId', element: LanguagePracticePage },
     { path: '/app/world', element: LumoWorldPage },
     { path: '/app/world/trophies', element: TrophyRoomPage },
     { path: '/app/world/inventory', element: InventoryPage },
